@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KenArt GAMERSHOP | Recargas Free Fire & Mobile Legends em Angola</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="kn.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            gold: '#b45309',
+                            goldLight: '#d97706'
+                        },
+                        mlbb: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9'
+                        },
+                        paypay: {
+                            50: '#f0fdf4',
+                            500: '#00c6ff',
+                            600: '#0284c7',
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif']
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.03), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.02), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .elegant-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+        }
+
+        .gem-pulse {
+            animation: pulse-subtle 2.5s infinite alternate;
+        }
+
+        @keyframes pulse-subtle {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.06); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <button onclick="showHomeScreen()" class="flex items-center gap-3 group text-left">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-md group-hover:bg-brand-600 transition duration-300">
+                    <i class="fa-solid fa-gamepad text-amber-400 text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif text-2xl font-bold tracking-tight text-slate-900 leading-none">
+                        Ken<span class="text-brand-600">Art</span>
+                    </h1>
+                    <span class="text-[10px] font-semibold tracking-widest text-slate-500 uppercase block mt-1">GAMERSHOP</span>
+                </div>
+            </button>
+
+            <!-- Navigation Buttons -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="showHomeScreen()" class="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-brand-600 transition">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </button>
+
+                <button onclick="openOrderWizard()" class="px-3.5 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Fazer Pedido</span>
+                </button>
+
+                <button onclick="toggleOrdersModal()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-clock-rotate-left text-brand-600"></i>
+                    <span class="hidden sm:inline">Meus Pedidos</span>
+                    <span id="ordersCountBadge" class="bg-brand-600 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+
+        <!-- TELA 1: HOME / APRESENTAÇÃO DA LOJA (Tela Inicial) -->
+        <div id="homeView" class="space-y-10">
+            
+            <!-- Hero Banner -->
+            <section class="elegant-card rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white relative overflow-hidden shadow-xl border-none">
+                <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-10 pointer-events-none hidden md:block">
+                    <i class="fa-solid fa-crown text-[220px] text-amber-400 -mr-16 -mt-10"></i>
+                </div>
+                
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-4">
+                        <i class="fa-solid fa-bolt"></i> Recargas Instantâneas em Angola 🇦🇴
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white mb-4">
+                        Sua Loja de Confiança para <span class="text-amber-400">Free Fire</span> & <span class="text-purple-400">Mobile Legends</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                        Compre diamantes e passes com total segurança. Pagamento rápido via <strong>Multicaixa Express (MCX)</strong>, <strong>PayPay África</strong> ou <strong>Transferência IBAN</strong>.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <button onclick="openOrderWizard()" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition shadow-lg flex items-center gap-3">
+                            <i class="fa-solid fa-cart-plus text-base"></i>
+                            Fazer Pedido Agora
+                        </button>
+                        <a href="https://wa.me/244929005720?text=Olá!%20Gostaria%20de%20informações%20sobre%20recargas." target="_blank" class="px-6 py-4 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold rounded-xl transition flex items-center gap-2 border border-slate-700">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                            Atendimento 929005720
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefícios -->
+            <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="elegant-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-brand-600 flex items-center justify-center font-bold text-xl flex-shrink-0">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">Entrega em 5 a 15 Min</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Envio rápido logo após a confirmação do comprovativo.</p>
+                    </div>
+                </div>
+
+                <div class="elegant-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">100% Seguro & Oficial</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Processamento garantido com validação do ID e Nickname.</p>
+                    </div>
+                </div>
+
+                <div class="elegant-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xl flex-shrink-0">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">MCX, PayPay & IBAN</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Pague de forma conveniente pela sua carteira digital preferida.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SELECTOR DE JOGO NO CATÁLOGO -->
+            <section class="elegant-card rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-100">
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-brand-600 block">Catálogo Completo</span>
+                        <h3 class="font-serif text-2xl font-bold text-slate-900">Escolha o seu Jogo</h3>
+                    </div>
+
+                    <!-- Abas de Seleção de Jogo -->
+                    <div class="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 self-start sm:self-auto">
+                        <button type="button" id="homeGameTabFF" onclick="switchHomeGame('ff')" class="px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-amber-400"></i> Free Fire
+                        </button>
+                        <button type="button" id="homeGameTabMLBB" onclick="switchHomeGame('mlbb')" class="px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-cat text-purple-600"></i> Mobile Legends
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VITRINE FREE FIRE -->
+                <div id="homeFFView" class="space-y-8">
+                    <!-- Diamantes FF -->
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-gem text-sky-500"></i> Tabela Completa de Diamantes (Free Fire)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                            
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">120 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">1.200 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', '120_diamonds')" class="w-full py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">240 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">2.400 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', '240_diamonds')" class="w-full py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition border-brand-500/40">
+                                <span class="absolute -top-2.5 bg-slate-900 text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded-full">Mais Popular</span>
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">372 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">3.600 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', '372_diamonds')" class="w-full py-1.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">624 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">5.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', '624_diamonds')" class="w-full py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">1272 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">11.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', '1060_diamonds')" class="w-full py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Passes FF -->
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-ticket text-amber-500"></i> Passes Especiais (Free Fire)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-ticket text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Booyah</span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">2.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', 'passe_booyah')" class="w-full py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-week text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Semanal</span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">2.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', 'passe_semanal')" class="w-full py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-days text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Assinatura Mensal</span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">10.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('ff', 'passe_mensal')" class="w-full py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VITRINE MOBILE LEGENDS -->
+                <div id="homeMLBBView" class="space-y-8 hidden">
+                    <!-- Diamantes MLBB -->
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-gem text-purple-600"></i> Tabela Completa de Diamantes (Mobile Legends)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                            
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">78 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">2.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_78_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">156 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">3.700 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_156_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">234 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">6.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_234_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition border-purple-500/40">
+                                <span class="absolute -top-2.5 bg-slate-900 text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded-full">Recomendado</span>
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">625 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">15.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_625_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">1860 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">44.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_1860_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">3.100 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">72.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_1250_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">4.700 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">125.000 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_2500_diamonds')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Passes MLBB -->
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-purple-600"></i> Passes Especiais (Mobile Legends)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            
+                            <div class="elegant-card rounded-2xl p-4 flex flex-col justify-between items-center text-center relative hover:shadow-card transition">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-week text-2xl text-purple-600 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Semanal (220 💎)</span>
+                                </div>
+                                <div class="w-full pt-2.5 border-t border-slate-100 mt-2 flex flex-col items-center gap-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm">2.500 Kz</span>
+                                    <button onclick="selectPackageAndOrder('mlbb', 'ml_passe_semanal')" class="w-full py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg transition">
+                                        Pedir
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Banner Botão Grande de Pedido -->
+            <section class="text-center bg-slate-100 rounded-3xl p-8 sm:p-12 border border-slate-200">
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-3">Pronto para fazer a sua recarga?</h3>
+                <p class="text-slate-600 text-xs sm:text-sm max-w-lg mx-auto mb-6">
+                    Clique no botão abaixo para preencher o formulário em etapas simples e finalizar o seu pedido diretamente no WhatsApp.
+                </p>
+                <button onclick="openOrderWizard()" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-bold uppercase tracking-wider rounded-xl text-sm transition shadow-lg inline-flex items-center gap-3">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Iniciar Etapas do Pedido
+                </button>
+            </section>
+
+        </div>
+
+        <!-- TELA 2: ETAPAS DE PEDIDO (Inicia Oculta) -->
+        <div id="orderWizardView" class="hidden">
+            
+            <!-- Voltar à Loja Button & Header -->
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="showHomeScreen()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar para a Loja</span>
+                </button>
+
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved"></i> Processo Seguro KenArt
+                </span>
+            </div>
+
+            <!-- Multi-Step Indicator -->
+            <div class="elegant-card rounded-2xl p-4 sm:p-6 mb-8 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-brand-600 block">Formulário de Recarga</span>
+                        <h2 class="font-serif text-lg sm:text-xl font-bold text-slate-900" id="stepIndicatorTitle">Etapa 1: Identificação da Conta</h2>
+                    </div>
+                    <span class="text-xs font-mono font-bold bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1 rounded-full" id="stepBadgeText">Passo 1 de 4</span>
+                </div>
+
+                <!-- Step Progress Track -->
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-6">
+                    <div id="progressBar" class="bg-slate-900 h-full w-1/4 transition-all duration-500 ease-out"></div>
+                </div>
+
+                <!-- Step Navigation Tabs -->
+                <div class="grid grid-cols-4 gap-2 text-center text-xs font-bold">
+                    <button type="button" onclick="goToStep(1)" id="stepTab1" class="py-2.5 px-1 rounded-xl border border-slate-900 bg-slate-900 text-white transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span class="w-5 h-5 rounded-full bg-white text-slate-900 text-[10px] flex items-center justify-center font-black">1</span>
+                        <span class="truncate">Conta</span>
+                    </button>
+                    <button type="button" onclick="goToStep(2)" id="stepTab2" class="py-2.5 px-1 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 text-[10px] flex items-center justify-center font-black">2</span>
+                        <span class="truncate">Pacote</span>
+                    </button>
+                    <button type="button" onclick="goToStep(3)" id="stepTab3" class="py-2.5 px-1 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 text-[10px] flex items-center justify-center font-black">3</span>
+                        <span class="truncate">Pagamento</span>
+                    </button>
+                    <button type="button" onclick="goToStep(4)" id="stepTab4" class="py-2.5 px-1 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 text-[10px] flex items-center justify-center font-black">4</span>
+                        <span class="truncate">Confirmar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Multi-Step Order Form -->
+            <form id="rechargeForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                
+                <!-- PASSO 1: SELEÇÃO DE JOGO E CONTA -->
+                <div id="stepSection1" class="step-section elegant-card rounded-2xl p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">1</div>
+                        <div>
+                            <h3 class="font-serif text-lg md:text-xl font-bold text-slate-900 uppercase tracking-wide">Jogo & Identificação da Conta</h3>
+                            <p class="text-xs text-slate-500">Selecione o jogo e preencha os dados da sua conta para envio imediato.</p>
+                        </div>
+                    </div>
+
+                    <!-- Escolha do Jogo no Passo 1 -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">
+                            Selecione o Jogo <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="wizardGame" value="ff" checked class="peer hidden" onchange="onWizardGameChange()">
+                                <div class="p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex items-center justify-center gap-3">
+                                    <i class="fa-solid fa-fire text-amber-500 text-lg"></i>
+                                    <span class="font-bold text-slate-900 text-xs sm:text-sm">Free Fire</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="wizardGame" value="mlbb" class="peer hidden" onchange="onWizardGameChange()">
+                                <div class="p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex items-center justify-center gap-3">
+                                    <i class="fa-solid fa-shield-cat text-purple-600 text-lg"></i>
+                                    <span class="font-bold text-slate-900 text-xs sm:text-sm">Mobile Legends</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos de Identificação Free Fire -->
+                    <div id="ffFieldsBox" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="playerId" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                ID do Jogador (Free Fire) <span class="text-rose-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="playerId" 
+                                pattern="[0-9]{8,12}"
+                                placeholder="Ex: 1234567890" 
+                                class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl px-4 py-3 text-slate-900 font-mono placeholder:text-slate-400 outline-none transition text-sm"
+                                oninput="validatePlayerIdInput(this)"
+                            >
+                            <p id="idHelpText" class="mt-1.5 text-xs text-slate-500 flex items-center gap-1">
+                                <i class="fa-solid fa-circle-info text-slate-400"></i> Digite de 8 a 12 dígitos numéricos.
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="playerNick" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                Nickname no Jogo <span class="text-rose-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="playerNick" 
+                                placeholder="Ex: ProGamer_AO" 
+                                class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm"
+                                oninput="validateNickInput(this)"
+                            >
+                            <p id="nickHelpText" class="mt-1.5 text-xs text-slate-500">
+                                Campo obrigatório para validação da recarga.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Campos de Identificação Mobile Legends -->
+                    <div id="mlbbFieldsBox" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
+                        <div>
+                            <label for="mlbbPlayerId" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                User ID (MLBB) <span class="text-rose-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="mlbbPlayerId" 
+                                placeholder="Ex: 12345678" 
+                                class="w-full bg-slate-50 border border-slate-300 focus:border-purple-600 focus:bg-white focus:ring-1 focus:ring-purple-600 rounded-xl px-4 py-3 text-slate-900 font-mono placeholder:text-slate-400 outline-none transition text-sm"
+                            >
+                            <p class="mt-1.5 text-xs text-slate-500">ID numérico do perfil.</p>
+                        </div>
+
+                        <div>
+                            <label for="mlbbZoneId" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                Zone ID / Server <span class="text-rose-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="mlbbZoneId" 
+                                placeholder="Ex: 1234" 
+                                class="w-full bg-slate-50 border border-slate-300 focus:border-purple-600 focus:bg-white focus:ring-1 focus:ring-purple-600 rounded-xl px-4 py-3 text-slate-900 font-mono placeholder:text-slate-400 outline-none transition text-sm"
+                            >
+                            <p class="mt-1.5 text-xs text-slate-500">Código de 4 ou 5 dígitos.</p>
+                        </div>
+
+                        <div>
+                            <label for="mlbbPlayerNick" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                Nickname <span class="text-rose-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="mlbbPlayerNick" 
+                                placeholder="Ex: ML_Legend" 
+                                class="w-full bg-slate-50 border border-slate-300 focus:border-purple-600 focus:bg-white focus:ring-1 focus:ring-purple-600 rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm"
+                            >
+                            <p class="mt-1.5 text-xs text-slate-500">Campo obrigatório.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex justify-end">
+                        <button type="button" onclick="goToStep(2)" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>Próximo: Escolher Pacote</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASSO 2: ESCOLHA DO PACOTE -->
+                <div id="stepSection2" class="step-section elegant-card rounded-2xl p-6 md:p-8 hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">2</div>
+                            <div>
+                                <h3 class="font-serif text-lg md:text-xl font-bold text-slate-900 uppercase tracking-wide">Escolha o Pacote</h3>
+                                <p class="text-xs text-slate-500">Selecione o pacote desejado para o jogo selecionado.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
+                            <button type="button" id="tabDiamonds" onclick="switchCategoryTab('diamonds')" class="px-5 py-2 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm">
+                                <i class="fa-solid fa-gem mr-1.5 text-amber-400"></i> Diamantes
+                            </button>
+                            <button type="button" id="tabPasses" onclick="switchCategoryTab('passes')" class="px-5 py-2 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900">
+                                <i class="fa-solid fa-ticket mr-1.5 text-brand-600"></i> Passes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- GRELHA DE DIAMANTES NO WIZARD (FREE FIRE & MLBB) -->
+                    <div id="diamondsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        
+                        <!-- FF 120 -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="120_diamonds" data-name="120 Diamantes (Free Fire)" data-price="1200" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">120 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">1.200 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF 240 -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="240_diamonds" data-name="240 Diamantes (Free Fire)" data-price="2400" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">240 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">2.400 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF 372 -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="372_diamonds" data-name="372 Diamantes (Free Fire)" data-price="3600" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between items-center text-center">
+                                <span class="absolute -top-2 bg-slate-900 text-white text-[8px] font-bold uppercase px-2 py-0.5 rounded-full">Popular</span>
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">372 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">3.600 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF 624 -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="624_diamonds" data-name="624 Diamantes (Free Fire)" data-price="5500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">624 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">5.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF 1060 -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="1272_diamonds" data-name="1.272 Diamantes (Free Fire)" data-price="9500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/50 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-sky-500 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">1.272 <span class="text-sky-500 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">11.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 78 -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_78_diamonds" data-name="78 Diamantes (Mobile Legends)" data-price="2000" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">78 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">2.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 156 -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_156_diamonds" data-name="156 Diamantes (Mobile Legends)" data-price="3700" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">156 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">3.700 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 234 -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_234_diamonds" data-name="234 Diamantes (Mobile Legends)" data-price="5500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">234 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">6.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+                       <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_625_diamonds" data-name="625 Diamantes (Mobile Legends)" data-price="15000" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">625 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">15.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 1860 -->
+                       <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_1860_diamonds" data-name="1860 Diamantes (Mobile Legends)" data-price="44000" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">1860 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">44.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 1250 -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_3100_diamonds" data-name="3.100 Diamantes (Mobile Legends)" data-price="72000" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">3 100 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">72.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB 2500 -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_4700_diamonds" data-name="125000 Diamantes (Mobile Legends)" data-price="125000" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/50 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-gem text-2xl text-purple-600 gem-pulse mb-1 block"></i>
+                                    <span class="font-serif font-bold text-lg text-slate-900 block">4700 <span class="text-purple-600 text-xs">💎</span></span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">125.000 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+
+                    <!-- GRELHA DE PASSES NO WIZARD -->
+                    <div id="passesGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 hidden">
+                        
+                        <!-- FF Booyah -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="passe_booyah" data-name="Passe Booyah (Free Fire)" data-price="2500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-amber-500 peer-checked:bg-amber-50/40 peer-checked:ring-2 peer-checked:ring-amber-500/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-ticket text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Booyah</span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">2.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF Semanal -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="passe_semanal" data-name="Passe Semanal (Free Fire)" data-price="2500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-amber-500 peer-checked:bg-amber-50/40 peer-checked:ring-2 peer-checked:ring-amber-500/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-week text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Semanal</span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">2.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- FF Mensal -->
+                        <label class="cursor-pointer group relative ff-pkg">
+                            <input type="radio" name="selectedItem" value="passe_mensal" data-name="Assinatura Mensal (Free Fire)" data-price="10500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-amber-500 peer-checked:bg-amber-50/40 peer-checked:ring-2 peer-checked:ring-amber-500/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-days text-2xl text-amber-500 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Assinatura Mensal</span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">10.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- MLBB Passe Semanal -->
+                        <label class="cursor-pointer group relative mlbb-pkg hidden">
+                            <input type="radio" name="selectedItem" value="ml_passe_semanal" data-name="Passe Semanal - 220 💎 (MLBB)" data-price="2500" class="peer hidden" onchange="onPackageSelect()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-purple-600 peer-checked:bg-purple-50/40 peer-checked:ring-2 peer-checked:ring-purple-600/20 transition flex flex-col justify-between items-center text-center">
+                                <div class="my-2">
+                                    <i class="fa-solid fa-calendar-week text-2xl text-purple-600 mb-1 block"></i>
+                                    <span class="font-serif font-bold text-base text-slate-900 block">Passe Semanal (220 💎)</span>
+                                </div>
+                                <div class="w-full pt-2 border-t border-slate-100 mt-2">
+                                    <span class="text-slate-900 font-extrabold font-mono text-sm block">2.500 Kz</span>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-4">
+                        <button type="button" onclick="goToStep(1)" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Voltar</span>
+                        </button>
+                        <button type="button" onclick="goToStep(3)" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>Próximo: Pagamento</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASSO 3: PAGAMENTO (Com PayPay) -->
+                <div id="stepSection3" class="step-section elegant-card rounded-2xl p-6 md:p-8 hidden">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">3</div>
+                        <div>
+                            <h3 class="font-serif text-lg md:text-xl font-bold text-slate-900 uppercase tracking-wide">Método de Pagamento</h3>
+                            <p class="text-xs text-slate-500">Escolha a sua forma de pagamento preferida em Kwanzas (Kz).</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Multicaixa Express -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="paymentMethod" value="express" class="peer hidden" checked onchange="updatePaymentDetails()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-emerald-600 peer-checked:bg-emerald-50/30 peer-checked:ring-2 peer-checked:ring-emerald-600/20 transition flex flex-col justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                        <i class="fa-solid fa-mobile-screen-button"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Multicaixa Express</h4>
+                                        <p class="text-[11px] text-slate-500">MCX Instantâneo</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-100/60 px-2 py-0.5 rounded self-start">Sem Taxas</span>
+                            </div>
+                        </label>
+
+                        <!-- PayPay África -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="paymentMethod" value="paypay" class="peer hidden" onchange="updatePaymentDetails()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-sky-500 peer-checked:bg-sky-50/40 peer-checked:ring-2 peer-checked:ring-sky-500/20 transition flex flex-col justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-xs">
+                                        <i class="fa-solid fa-wallet"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                                            PayPay <span class="bg-sky-100 text-sky-700 text-[9px] px-1.5 py-0.2 rounded font-extrabold">NOVO</span>
+                                        </h4>
+                                        <p class="text-[11px] text-slate-500">Carteira Digital PayPay</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-sky-700 bg-sky-100/60 px-2 py-0.5 rounded self-start">Rápido & Direto</span>
+                            </div>
+                        </label>
+
+                        <!-- Transferência IBAN -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="paymentMethod" value="iban" class="peer hidden" onchange="updatePaymentDetails()">
+                            <div class="h-full p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/30 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex flex-col justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-sky-100 text-brand-700 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">IBAN Bancário</h4>
+                                        <p class="text-[11px] text-slate-500">BAI / BFA / BIC / Atlântico</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded self-start">Todos os Bancos</span>
+                            </div>
+                        </label>
+
+                    </div>
+
+                    <div class="mt-6 p-5 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-200 pb-3 flex-wrap gap-2">
+                            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-brand-600"></i> Dados para Pagamento
+                            </span>
+                            <button type="button" onclick="showIbanModal()" class="text-xs text-brand-600 hover:text-brand-700 font-semibold underline">
+                                Ver todas as contas e números
+                            </button>
+                        </div>
+
+                        <div id="paymentInfoContent" class="space-y-3 font-mono text-sm"></div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-4">
+                        <button type="button" onclick="goToStep(2)" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Voltar</span>
+                        </button>
+                        <button type="button" onclick="goToStep(4)" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>Próximo: Revisar & Confirmar</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASSO 4: CONFIRMAR -->
+                <div id="stepSection4" class="step-section elegant-card rounded-2xl p-6 md:p-8 bg-slate-900 text-white shadow-xl hidden">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500 text-slate-900 flex items-center justify-center font-bold text-xs">4</div>
+                        <div>
+                            <h3 class="font-serif text-lg md:text-xl font-bold text-white uppercase tracking-wide">Revisar & Finalizar</h3>
+                            <p class="text-xs text-slate-400">Verifique as informações antes de enviar para o WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-xs font-mono">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <span class="text-slate-400 text-[10px] font-bold uppercase block tracking-wider">Dados do Jogador</span>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Jogo:</span>
+                                <span id="confirmGameName" class="font-bold text-amber-400">--</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">ID / Zone:</span>
+                                <span id="confirmPlayerId" class="font-bold text-amber-400">--</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Nickname:</span>
+                                <span id="confirmPlayerNick" class="font-bold text-white">--</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <span class="text-slate-400 text-[10px] font-bold uppercase block tracking-wider">Detalhes do Pedido</span>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Item:</span>
+                                <span id="confirmItem" class="font-bold text-white">--</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Pagamento:</span>
+                                <span id="confirmPayment" class="text-slate-300">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-slate-800 pt-6">
+                        <div>
+                            <span class="text-xs text-slate-400 block font-bold uppercase">Total a Pagar</span>
+                            <span id="summaryTotalPrice" class="text-3xl font-bold font-mono text-amber-400">0 Kz</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                            <button type="button" onclick="goToStep(3)" class="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                <span>Alterar</span>
+                            </button>
+                            
+                            <button 
+                                type="submit" 
+                                id="submitBtn"
+                                class="flex-1 sm:flex-none px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase tracking-wider rounded-xl transition duration-300 shadow-md flex items-center justify-center gap-3 text-xs sm:text-sm"
+                            >
+                                <i class="fa-solid fa-paper-plane text-base"></i>
+                                Finalizar & Enviar Pedido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="mt-16 elegant-card rounded-2xl p-6 md:p-8">
+            <h3 class="font-serif text-xl font-bold uppercase text-slate-900 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-brand-600"></i> Perguntas Frequentes (FAQ)
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-900 mb-1">Quanto tempo demora a entrega?</h4>
+                    <p class="text-slate-600 leading-relaxed">A recarga é efetuada em <strong>5 a 15 minutos</strong> após a confirmação do pagamento no WhatsApp.</p>
+                </div>
+                
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-900 mb-1">Onde encontro o ID e Nickname?</h4>
+                    <p class="text-slate-600 leading-relaxed">No <strong>Free Fire</strong> ou <strong>Mobile Legends</strong>, abra o seu perfil no jogo no canto superior para copiar o seu ID e Server ID.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-16 border-t border-slate-200 bg-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+                <span class="font-serif font-bold text-slate-900 text-sm">KenArt GAMERSHOP</span>
+                <span>&copy; 2026 - Todos os direitos reservados.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/244929005720" target="_blank" class="hover:text-slate-900 transition font-medium">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> WhatsApp: 929005720
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: Recibo de Pedido -->
+    <div id="receiptModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="closeReceiptModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center pb-6 border-b border-slate-100">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-slate-900">Pedido Gerado com Sucesso!</h3>
+                <p class="text-xs text-slate-500 mt-1">Envie este comprovativo ao nosso atendente no WhatsApp.</p>
+            </div>
+
+            <div class="py-6 space-y-4 font-mono text-xs">
+                
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2.5">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">CÓDIGO DO PEDIDO:</span>
+                        <span id="ticketCode" class="font-bold text-slate-900">#KA-00000</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">JOGO:</span>
+                        <span id="ticketGame" class="font-bold text-amber-600">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">DATA / HORA:</span>
+                        <span id="ticketDate" class="text-slate-700">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">ID / SERVER:</span>
+                        <span id="ticketPlayerId" class="font-bold text-brand-600">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">NICKNAME:</span>
+                        <span id="ticketPlayerNick" class="font-bold text-slate-900">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">PACOTE:</span>
+                        <span id="ticketItem" class="font-bold text-slate-900">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">MÉTODO:</span>
+                        <span id="ticketMethod" class="text-slate-700">--</span>
+                    </div>
+                    <div class="flex justify-between border-t border-slate-200 pt-2.5 text-sm">
+                        <span class="text-slate-900 font-bold">TOTAL A PAGAR:</span>
+                        <span id="ticketTotal" class="font-bold text-emerald-600">--</span>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-800 flex gap-2.5 items-start">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-sm mt-0.5"></i>
+                    <span>Clique no botão abaixo para enviar os detalhes ao WhatsApp <strong>(929005720)</strong>.</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <a id="whatsappDirectLink" href="#" target="_blank" rel="noopener" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase text-center transition tracking-wider flex items-center justify-center gap-2 text-xs shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Enviar Pedido no WhatsApp
+                </a>
+
+                <button onclick="copyOrderDetailsText()" class="w-full py-3 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-semibold text-slate-700 transition flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i>
+                    Copiar Detalhes do Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Contas Bancárias & PayPay -->
+    <div id="ibanModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 border border-slate-200 shadow-2xl relative">
+            <button onclick="closeIbanModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="font-serif text-lg font-bold uppercase text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-wallet text-brand-600"></i> Contas & Carteiras de Pagamento
+            </h3>
+            <div class="space-y-3.5 text-xs font-mono">
+                <!-- Express -->
+                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="text-emerald-700 font-bold uppercase block mb-1">MULTICAIXA EXPRESS (MCX)</span>
+                    <div class="flex justify-between items-center text-sm font-bold text-slate-900">
+                        <span>Telefone: 929 005 720</span>
+                        <button onclick="copyText('929005720', 'Número Express')" class="text-brand-600 hover:text-brand-700 p-1">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PayPay -->
+                <div class="p-3.5 bg-sky-50 rounded-xl border border-sky-200">
+                    <span class="text-sky-700 font-bold uppercase block mb-1">PAYPAY ÁFRICA</span>
+                    <div class="flex justify-between items-center text-sm font-bold text-slate-900">
+                        <span>Telefone/ID: 929 005 720</span>
+                        <button onclick="copyText('929005720', 'Número PayPay')" class="text-sky-600 hover:text-sky-700 p-1">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                    <span class="text-[10px] text-slate-500 font-sans block mt-1">Nome no PayPay: KenArt GAMERSHOP</span>
+                </div>
+
+                <!-- BAI -->
+                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="text-brand-700 font-bold uppercase block mb-1">BANCO BAI</span>
+                    <div class="flex justify-between items-center text-xs font-bold text-slate-900 break-all">
+                        <span>AO06.0040.0000.4541.7639.1017.7</span>
+                        <button onclick="copyText('AO06004000004541763910177', 'IBAN BAI')" class="text-brand-600 hover:text-brand-700 ml-2 p-1">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button onclick="closeIbanModal()" class="w-full mt-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 font-bold text-white text-xs uppercase">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 3: Histórico de Pedidos -->
+    <div id="ordersModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 border border-slate-200 shadow-2xl relative max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+                <h3 class="font-serif text-lg font-bold uppercase text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-brand-600"></i> Histórico de Pedidos
+                </h3>
+                <button onclick="toggleOrdersModal()" class="text-slate-400 hover:text-slate-600 p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div id="ordersList" class="py-4 space-y-3 overflow-y-auto flex-grow"></div>
+            <div class="pt-4 border-t border-slate-100 text-right">
+                <button onclick="clearOrdersHistory()" class="text-xs text-rose-600 hover:text-rose-700 font-semibold">
+                    <i class="fa-solid fa-trash-can mr-1"></i> Limpar Histórico Local
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white font-sans text-xs shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 flex items-center gap-3">
+        <i id="toastIcon" class="fa-solid fa-circle-info text-sky-400 text-base"></i>
+        <span id="toastMessage">Notificação</span>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = "244929005720";
+        let currentOrderData = null;
+        let currentStep = 1;
+        let selectedGame = 'ff';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updatePaymentDetails();
+            loadOrdersBadge();
+            updateStepUI(1);
+        });
+
+        // Alternar visualização entre Home e Wizard
+        function showHomeScreen() {
+            document.getElementById('homeView').classList.remove('hidden');
+            document.getElementById('orderWizardView').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openOrderWizard(gameType = null) {
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('orderWizardView').classList.remove('hidden');
+            
+            if (gameType) {
+                selectedGame = gameType;
+                const radio = document.querySelector(`input[name="wizardGame"][value="${gameType}"]`);
+                if (radio) radio.checked = true;
+                onWizardGameChange();
+            }
+
+            goToStep(1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchHomeGame(game) {
+            const homeFFView = document.getElementById('homeFFView');
+            const homeMLBBView = document.getElementById('homeMLBBView');
+            const tabFF = document.getElementById('homeGameTabFF');
+            const tabMLBB = document.getElementById('homeGameTabMLBB');
+
+            if (game === 'ff') {
+                homeFFView.classList.remove('hidden');
+                homeMLBBView.classList.add('hidden');
+                tabFF.className = "px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm flex items-center gap-2";
+                tabMLBB.className = "px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900 flex items-center gap-2";
+            } else {
+                homeFFView.classList.add('hidden');
+                homeMLBBView.classList.remove('hidden');
+                tabMLBB.className = "px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm flex items-center gap-2";
+                tabFF.className = "px-5 py-2.5 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900 flex items-center gap-2";
+            }
+        }
+
+        function selectPackageAndOrder(game, packageValue) {
+            openOrderWizard(game);
+            
+            const radio = document.querySelector(`input[name="selectedItem"][value="${packageValue}"]`);
+            if (radio) {
+                radio.checked = true;
+                onPackageSelect();
+            }
+        }
+
+        function onWizardGameChange() {
+            selectedGame = document.querySelector('input[name="wizardGame"]:checked').value;
+
+            const ffFieldsBox = document.getElementById('ffFieldsBox');
+            const mlbbFieldsBox = document.getElementById('mlbbFieldsBox');
+
+            if (selectedGame === 'ff') {
+                ffFieldsBox.classList.remove('hidden');
+                mlbbFieldsBox.classList.add('hidden');
+            } else {
+                ffFieldsBox.classList.add('hidden');
+                mlbbFieldsBox.classList.remove('hidden');
+            }
+
+            // Filtrar visibilidade dos pacotes no passo 2
+            document.querySelectorAll('.ff-pkg').forEach(el => {
+                if (selectedGame === 'ff') el.classList.remove('hidden'); else el.classList.add('hidden');
+            });
+
+            document.querySelectorAll('.mlbb-pkg').forEach(el => {
+                if (selectedGame === 'mlbb') el.classList.remove('hidden'); else el.classList.add('hidden');
+            });
+
+            // Desmarcar pacote previamente selecionado se o jogo mudou
+            const currentSelected = document.querySelector('input[name="selectedItem"]:checked');
+            if (currentSelected) currentSelected.checked = false;
+        }
+
+        function goToStep(step) {
+            // Guardas de validação entre passos
+            if (step > currentStep) {
+                if (currentStep === 1) {
+                    if (selectedGame === 'ff') {
+                        const idVal = document.getElementById('playerId').value;
+                        const nickVal = document.getElementById('playerNick').value.trim();
+
+                        if (idVal.length < 8 || idVal.length > 12) {
+                            showToast("Insira um ID do Free Fire válido (8 a 12 dígitos).", "error");
+                            document.getElementById('playerId').focus();
+                            return;
+                        }
+                        if (!nickVal) {
+                            showToast("O Nickname no jogo é obrigatório!", "error");
+                            document.getElementById('playerNick').focus();
+                            return;
+                        }
+                    } else {
+                        const mlbbId = document.getElementById('mlbbPlayerId').value.trim();
+                        const mlbbZone = document.getElementById('mlbbZoneId').value.trim();
+                        const mlbbNick = document.getElementById('mlbbPlayerNick').value.trim();
+
+                        if (!mlbbId) {
+                            showToast("Insira o User ID de Mobile Legends.", "error");
+                            document.getElementById('mlbbPlayerId').focus();
+                            return;
+                        }
+                        if (!mlbbZone) {
+                            showToast("Insira a Zone ID / Server ID de Mobile Legends.", "error");
+                            document.getElementById('mlbbZoneId').focus();
+                            return;
+                        }
+                        if (!mlbbNick) {
+                            showToast("O Nickname no jogo é obrigatório!", "error");
+                            document.getElementById('mlbbPlayerNick').focus();
+                            return;
+                        }
+                    }
+                }
+
+                if (currentStep === 2 && step > 2) {
+                    const selectedItemRadio = document.querySelector('input[name="selectedItem"]:checked');
+                    if (!selectedItemRadio) {
+                        showToast("Por favor selecione um pacote de Diamantes ou Passe.", "error");
+                        return;
+                    }
+                }
+            }
+
+            currentStep = step;
+            updateStepUI(step);
+
+            // Atualizar revisão no Passo 4
+            if (step === 4) {
+                const selectedRadio = document.querySelector('input[name="selectedItem"]:checked');
+                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+                document.getElementById('confirmGameName').textContent = selectedGame === 'ff' ? 'Free Fire' : 'Mobile Legends';
+                
+                if (selectedGame === 'ff') {
+                    document.getElementById('confirmPlayerId').textContent = document.getElementById('playerId').value;
+                    document.getElementById('confirmPlayerNick').textContent = document.getElementById('playerNick').value.trim();
+                } else {
+                    document.getElementById('confirmPlayerId').textContent = `${document.getElementById('mlbbPlayerId').value.trim()} (${document.getElementById('mlbbZoneId').value.trim()})`;
+                    document.getElementById('confirmPlayerNick').textContent = document.getElementById('mlbbPlayerNick').value.trim();
+                }
+
+                document.getElementById('confirmItem').textContent = selectedRadio ? selectedRadio.getAttribute('data-name') : '--';
+                
+                let payText = 'Multicaixa Express (929005720)';
+                if (paymentMethod === 'paypay') {
+                    payText = 'PayPay África (929005720)';
+                } else if (paymentMethod === 'iban') {
+                    payText = 'Transferência Bancária (IBAN)';
+                }
+                document.getElementById('confirmPayment').textContent = payText;
+            }
+
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+        }
+
+        function updateStepUI(step) {
+            const totalSteps = 4;
+            const progressPct = (step / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = `${progressPct}%`;
+            document.getElementById('stepBadgeText').textContent = `Passo ${step} de ${totalSteps}`;
+
+            const stepTitles = {
+                1: 'Etapa 1: Jogo & Identificação',
+                2: 'Etapa 2: Escolha do Pacote',
+                3: 'Etapa 3: Método de Pagamento',
+                4: 'Etapa 4: Confirmar & Enviar'
+            };
+            document.getElementById('stepIndicatorTitle').textContent = stepTitles[step];
+
+            for (let i = 1; i <= totalSteps; i++) {
+                const section = document.getElementById(`stepSection${i}`);
+                const tab = document.getElementById(`stepTab${i}`);
+                
+                if (i === step) {
+                    section.classList.remove('hidden');
+                    tab.className = "py-2.5 px-1 rounded-xl border border-slate-900 bg-slate-900 text-white transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 shadow-sm font-bold";
+                } else if (i < step) {
+                    section.classList.add('hidden');
+                    tab.className = "py-2.5 px-1 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 font-semibold";
+                } else {
+                    section.classList.add('hidden');
+                    tab.className = "py-2.5 px-1 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 opacity-80 font-medium";
+                }
+            }
+        }
+
+        function switchCategoryTab(type) {
+            const diamondsGrid = document.getElementById('diamondsGrid');
+            const passesGrid = document.getElementById('passesGrid');
+            const tabDiamonds = document.getElementById('tabDiamonds');
+            const tabPasses = document.getElementById('tabPasses');
+
+            if (type === 'diamonds') {
+                diamondsGrid.classList.remove('hidden');
+                passesGrid.classList.add('hidden');
+                tabDiamonds.className = "px-5 py-2 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm";
+                tabPasses.className = "px-5 py-2 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900";
+            } else {
+                diamondsGrid.classList.add('hidden');
+                passesGrid.classList.remove('hidden');
+                tabPasses.className = "px-5 py-2 rounded-lg text-xs font-bold uppercase transition bg-slate-900 text-white shadow-sm";
+                tabDiamonds.className = "px-5 py-2 rounded-lg text-xs font-bold uppercase transition text-slate-600 hover:text-slate-900";
+            }
+        }
+
+        function validatePlayerIdInput(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+        function validateNickInput(input) {
+            const nickHelpText = document.getElementById('nickHelpText');
+            if (input.value.trim().length > 0) {
+                nickHelpText.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> Nickname preenchido!`;
+                nickHelpText.className = "mt-1.5 text-xs text-emerald-600 flex items-center gap-1 font-medium";
+            } else {
+                nickHelpText.innerHTML = `Campo obrigatório para confirmação.`;
+                nickHelpText.className = "mt-1.5 text-xs text-slate-500";
+            }
+        }
+
+        function onPackageSelect() {
+            const selectedRadio = document.querySelector('input[name="selectedItem"]:checked');
+            if (!selectedRadio) return;
+
+            const price = parseInt(selectedRadio.getAttribute('data-price'));
+            document.getElementById('summaryTotalPrice').textContent = formatKz(price);
+        }
+
+        function formatKz(val) {
+            return val.toLocaleString('pt-AO') + ' Kz';
+        }
+
+        function updatePaymentDetails() {
+            const selectedMethodRadio = document.querySelector('input[name="paymentMethod"]:checked');
+            const method = selectedMethodRadio ? selectedMethodRadio.value : 'express';
+            const container = document.getElementById('paymentInfoContent');
+
+            if (method === 'express') {
+                container.innerHTML = `
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                        <div>
+                            <span class="text-xs text-slate-500 font-sans block">Número Multicaixa Express</span>
+                            <span class="font-bold text-slate-900 text-base">929 005 720</span>
+                        </div>
+                        <button type="button" onclick="copyText('929005720', 'Número Express')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-500 font-sans">Enviar comprovativo no WhatsApp logo após o pagamento.</p>
+                `;
+            } else if (method === 'paypay') {
+                container.innerHTML = `
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-sky-200">
+                        <div>
+                            <span class="text-xs text-sky-700 font-sans font-semibold block">Número / ID PayPay África</span>
+                            <span class="font-bold text-slate-900 text-base">929 005 720</span>
+                        </div>
+                        <button type="button" onclick="copyText('929005720', 'Número PayPay')" class="px-3 py-1.5 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold rounded-lg transition flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-500 font-sans">Nome do Titular PayPay: <strong>KenArt GAMERSHOP</strong>. Pague via App PayPay e envie o comprovativo.</p>
+                `;
+            } else if (method === 'iban') {
+                container.innerHTML = `
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                        <div>
+                            <span class="text-xs text-slate-500 font-sans block">IBAN BANCO BAI (Principal)</span>
+                            <span class="font-bold text-slate-900 text-xs break-all">AO06.0040.0000.4541.7639.1017.7 </span>
+                        </div>
+                        <button type="button" onclick="copyText('AO06004000004541763910177', 'IBAN BAI')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-500 font-sans">Clique em "Ver todas as contas" para conferir os dados dos restantes bancos.</p>
+                `;
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const selectedRadio = document.querySelector('input[name="selectedItem"]:checked');
+            if (!selectedRadio) {
+                showToast("Por favor selecione um pacote de Diamantes ou Passe.", "error");
+                return;
+            }
+
+            const game = selectedGame === 'ff' ? 'Free Fire' : 'Mobile Legends';
+            let playerInfo = '';
+            
+            if (selectedGame === 'ff') {
+                const idVal = document.getElementById('playerId').value;
+                const nickVal = document.getElementById('playerNick').value.trim();
+                playerInfo = `ID: ${idVal} | Nick: ${nickVal}`;
+            } else {
+                const mlbbId = document.getElementById('mlbbPlayerId').value.trim();
+                const mlbbZone = document.getElementById('mlbbZoneId').value.trim();
+                const mlbbNick = document.getElementById('mlbbPlayerNick').value.trim();
+                playerInfo = `ID: ${mlbbId} (${mlbbZone}) | Nick: ${mlbbNick}`;
+            }
+
+            const itemTitle = selectedRadio.getAttribute('data-name');
+            const price = parseInt(selectedRadio.getAttribute('data-price'));
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            let paymentTitle = "Multicaixa Express";
+            if (paymentMethod === "paypay") paymentTitle = "PayPay África";
+            if (paymentMethod === "iban") paymentTitle = "Transferência IBAN";
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pt-AO') + ' às ' + now.toLocaleTimeString('pt-AO', { hour: '2-digit', minute: '2-digit' });
+            const ticketCode = "#KA-" + Math.floor(10000 + Math.random() * 90000);
+
+            currentOrderData = {
+                ticketCode,
+                game,
+                playerInfo,
+                itemTitle,
+                price: formatKz(price),
+                paymentTitle,
+                dateStr
+            };
+
+            // Preencher ticket do modal
+            document.getElementById('ticketCode').textContent = ticketCode;
+            document.getElementById('ticketGame').textContent = game;
+            document.getElementById('ticketDate').textContent = dateStr;
+            document.getElementById('ticketPlayerId').textContent = selectedGame === 'ff' ? document.getElementById('playerId').value : `${document.getElementById('mlbbPlayerId').value.trim()} (${document.getElementById('mlbbZoneId').value.trim()})`;
+            document.getElementById('ticketPlayerNick').textContent = selectedGame === 'ff' ? document.getElementById('playerNick').value.trim() : document.getElementById('mlbbPlayerNick').value.trim();
+            document.getElementById('ticketItem').textContent = itemTitle;
+            document.getElementById('ticketMethod').textContent = paymentTitle;
+            document.getElementById('ticketTotal').textContent = formatKz(price);
+
+            // Gerar link do WhatsApp
+            let messageText = `*NOVO PEDIDO DE RECARGA - KENART GAMERSHOP*\n\n`;
+            messageText += `📌 *Código:* ${ticketCode}\n`;
+            messageText += `🎮 *Jogo:* ${game}\n`;
+            messageText += `👤 *Dados:* ${playerInfo}\n`;
+            messageText += `📦 *Pacote:* ${itemTitle}\n`;
+            messageText += `💳 *Pagamento:* ${paymentTitle}\n`;
+            messageText += `💰 *Total:* ${formatKz(price)}\n`;
+            messageText += `📅 *Data:* ${dateStr}\n\n`;
+            messageText += `_Segue em anexo o comprovativo do pagamento._`;
+
+            const encodedMsg = encodeURIComponent(messageText);
+            document.getElementById('whatsappDirectLink').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
+
+            // Salvar no Histórico Local
+            saveOrder(currentOrderData);
+
+            // Confetes de celebração
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            // Exibir Modal de Recibo
+            document.getElementById('receiptModal').classList.remove('hidden');
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+        }
+
+        function showIbanModal() {
+            document.getElementById('ibanModal').classList.remove('hidden');
+        }
+
+        function closeIbanModal() {
+            document.getElementById('ibanModal').classList.add('hidden');
+        }
+
+        function copyOrderDetailsText() {
+            if (!currentOrderData) return;
+            const txt = `PEDIDO ${currentOrderData.ticketCode} | Jogo: ${currentOrderData.game} | ${currentOrderData.playerInfo} | Pacote: ${currentOrderData.itemTitle} | Método: ${currentOrderData.paymentTitle} | Total: ${currentOrderData.price}`;
+            copyText(txt, "Detalhes do Pedido");
+        }
+
+        function copyText(text, label) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(`${label} copiado para a área de transferência!`, "success");
+            }).catch(() => {
+                showToast(`Não foi possível copiar automaticamente.`, "error");
+            });
+        }
+
+        function showToast(message, type = "info") {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.textContent = message;
+
+            if (type === "success") {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+            } else if (type === "error") {
+                toastIcon.className = "fa-solid fa-triangle-exclamation text-rose-400 text-base";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-info text-sky-400 text-base";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        function saveOrder(order) {
+            let orders = JSON.parse(localStorage.getItem('kenart_orders') || '[]');
+            orders.unshift(order);
+            if (orders.length > 20) orders = orders.slice(0, 20);
+            localStorage.setItem('kenart_orders', JSON.stringify(orders));
+            loadOrdersBadge();
+        }
+
+        function loadOrdersBadge() {
+            const orders = JSON.parse(localStorage.getItem('kenart_orders') || '[]');
+            const badge = document.getElementById('ordersCountBadge');
+            if (orders.length > 0) {
+                badge.textContent = orders.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleOrdersModal() {
+            const modal = document.getElementById('ordersModal');
+            if (modal.classList.contains('hidden')) {
+                renderOrdersHistory();
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function renderOrdersHistory() {
+            const ordersList = document.getElementById('ordersList');
+            const orders = JSON.parse(localStorage.getItem('kenart_orders') || '[]');
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 font-sans text-xs">
+                        <i class="fa-solid fa-folder-open text-3xl mb-2 block"></i>
+                        Ainda não realizou nenhum pedido neste navegador.
+                    </div>
+                `;
+                return;
+            }
+
+            ordersList.innerHTML = orders.map(ord => `
+                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs flex flex-col gap-1.5">
+                    <div class="flex justify-between font-bold text-slate-900">
+                        <span>${ord.ticketCode}</span>
+                        <span class="text-emerald-600">${ord.price}</span>
+                    </div>
+                    <div class="flex justify-between text-[11px] text-slate-600">
+                        <span>${ord.game} - ${ord.itemTitle}</span>
+                        <span class="text-slate-400">${ord.dateStr}</span>
+                    </div>
+                    <div class="text-[10px] text-slate-500 truncate">
+                        ${ord.playerInfo} • <span class="text-slate-700 font-semibold">${ord.paymentTitle}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearOrdersHistory() {
+            if (confirm("Deseja realmente apagar o seu histórico de pedidos local?")) {
+                localStorage.removeItem('kenart_orders');
+                loadOrdersBadge();
+                renderOrdersHistory();
+                showToast("Histórico limpo com sucesso.", "info");
+            }
+        }
+    </script>
+</body>
+</html>
