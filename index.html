@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" type="image/png" href="kn.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -22,20 +21,8 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            800: '#0c4a6e',
-                            900: '#082f49'
-                        },
-                        mlbb: {
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9'
-                        }
+                        brand: { 50:'#f0f9ff',100:'#e0f2fe',500:'#0284c7',600:'#0369a1',700:'#075985',800:'#0c4a6e',900:'#082f49' },
+                        mlbb: { 500:'#8b5cf6',600:'#7c3aed',700:'#6d28d9' }
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -55,88 +42,18 @@
                 radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.02), transparent 40%);
             background-attachment: fixed;
         }
-
-        .elegant-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
-        }
-
-        .folder-tab {
-            position: relative;
-            border-radius: 1rem 1rem 0 0;
-            transition: all 0.2s ease;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .folder-tab::before {
-            content: '';
-            position: absolute;
-            top: -0.5rem;
-            left: 1rem;
-            width: 2.5rem;
-            height: 0.75rem;
-            background: inherit;
-            border-radius: 0.75rem 0.75rem 0 0;
-            border: 1px solid #e2e8f0;
-            border-bottom: none;
-        }
-
-        .folder-tab.active {
-            background: #ffffff;
-            border-color: #e2e8f0;
-            box-shadow: 0 -4px 12px rgba(2, 132, 199, 0.08);
-        }
-
-        .folder-tab.active::before {
-            background: #ffffff;
-            border-color: #e2e8f0;
-        }
-
-        .folder-content {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 0 1rem 1rem 1rem;
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
-            position: relative;
-            z-index: 0;
-        }
-
-        .price-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .price-card:hover {
-            box-shadow: 0 8px 24px -6px rgba(2, 132, 199, 0.12);
-            border-color: #0284c7;
-            transform: translateY(-2px);
-        }
-
-        .price-card.ff:hover { border-color: #d97706; }
-        .price-card.mlbb:hover { border-color: #7c3aed; }
-
-        .gem-pulse {
-            animation: pulse-subtle 2.5s infinite alternate;
-        }
-
-        @keyframes pulse-subtle {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
-        }
-
-        .step-section {
-            animation: fadeInUp 0.35s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        .folder-tab { position: relative; border-radius: 1rem 1rem 0 0; transition: all .2s ease; box-shadow: 0 -2px 8px rgba(0,0,0,.02); }
+        .folder-tab::before { content:''; position:absolute; top:-.5rem; left:1rem; width:2.5rem; height:.75rem; background:inherit; border-radius:.75rem .75rem 0 0; border:1px solid #e2e8f0; border-bottom:none; }
+        .folder-tab.active { background:#fff; border-color:#e2e8f0; box-shadow:0 -4px 12px rgba(2,132,199,.08); }
+        .folder-tab.active::before { background:#fff; border-color:#e2e8f0; }
+        .folder-content { background:#fff; border:1px solid #e2e8f0; border-radius:0 1rem 1rem 1rem; box-shadow:0 4px 20px -2px rgba(15,23,42,.06); position:relative; z-index:0; }
+        
+        .price-card { background:#fff; border:1px solid #e2e8f0; border-radius:0.75rem; transition:all 0.2s ease; position:relative; overflow:hidden; }
+        .price-card:hover { box-shadow:0 8px 24px -6px rgba(2,132,199,0.12); border-color:#0284c7; transform:translateY(-2px); }
+        
+        .step-section { animation: fadeInUp 0.35s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -150,26 +67,20 @@
 ============================================================= -->
 <div id="authScreen" class="min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-md">
-
         <div class="text-center mb-8">
             <div class="w-16 h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center mx-auto shadow-lg mb-4">
                 <i class="fa-solid fa-gamepad text-amber-400 text-2xl"></i>
             </div>
-            <h1 class="font-serif text-3xl font-bold text-slate-900">
-                Ken<span class="text-brand-600">Art</span>
-            </h1>
+            <h1 class="font-serif text-3xl font-bold text-slate-900">Ken<span class="text-brand-600">Art</span></h1>
             <p class="text-[11px] font-semibold tracking-[0.25em] text-slate-500 uppercase mt-1">GAMERSHOP</p>
         </div>
 
         <div class="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-8">
-
             <div class="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 mb-5">
-                <button onclick="switchAuthTab('login')" id="tabLogin"
-                    class="flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition bg-slate-900 text-white shadow-sm">
+                <button onclick="switchAuthTab('login')" id="tabLogin" class="flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition bg-slate-900 text-white shadow-sm">
                     <i class="fa-solid fa-right-to-bracket mr-1.5"></i> Entrar
                 </button>
-                <button onclick="switchAuthTab('register')" id="tabRegister"
-                    class="flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition text-slate-600 hover:text-slate-900">
+                <button onclick="switchAuthTab('register')" id="tabRegister" class="flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition text-slate-600 hover:text-slate-900">
                     <i class="fa-solid fa-user-plus mr-1.5"></i> Cadastrar
                 </button>
             </div>
@@ -178,79 +89,54 @@
 
             <!-- LOGIN -->
             <div id="loginPanel">
-                <button onclick="handleGoogleLogin()" id="btnLoginGoogle"
-                    class="w-full py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-3 mb-4 disabled:opacity-50">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
+                <button onclick="handleGoogleLogin()" id="btnLoginGoogle" class="w-full py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-3 mb-4 disabled:opacity-50">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
                     <span>Entrar com Google</span>
                 </button>
-
                 <div class="relative my-5">
                     <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
                     <div class="relative flex justify-center"><span class="bg-white px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">ou</span></div>
                 </div>
-
                 <form id="loginForm" onsubmit="handleEmailLogin(event)" class="space-y-3">
                     <div class="relative">
                         <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="email" id="loginEmail" required placeholder="Email"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="email" id="loginEmail" required placeholder="Email" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="password" id="loginPassword" required placeholder="Palavra-passe"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="password" id="loginPassword" required placeholder="Palavra-passe" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
-                    <button type="submit" id="btnEmailLogin"
-                        class="w-full py-3.5 bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Entrar
+                    <button type="submit" id="btnEmailLogin" class="w-full py-3.5 bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar
                     </button>
                 </form>
             </div>
 
             <!-- REGISTER -->
             <div id="registerPanel" class="hidden">
-                <button onclick="handleGoogleRegister()" id="btnRegisterGoogle"
-                    class="w-full py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-3 mb-4 disabled:opacity-50">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
+                <button onclick="handleGoogleRegister()" id="btnRegisterGoogle" class="w-full py-3.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-3 mb-4 disabled:opacity-50">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
                     <span>Cadastrar com Google</span>
                 </button>
-
                 <div class="relative my-5">
                     <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
                     <div class="relative flex justify-center"><span class="bg-white px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">ou</span></div>
                 </div>
-
                 <form id="registerForm" onsubmit="handleEmailRegister(event)" class="space-y-3">
                     <div class="relative">
                         <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="email" id="registerEmail" required placeholder="Email"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="email" id="registerEmail" required placeholder="Email" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="password" id="registerPassword" required minlength="6" placeholder="Palavra-passe (mín. 6)"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="password" id="registerPassword" required minlength="6" placeholder="Palavra-passe (mín. 6)" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="password" id="registerConfirm" required minlength="6" placeholder="Confirmar palavra-passe"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="password" id="registerConfirm" required minlength="6" placeholder="Confirmar palavra-passe" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
-                    <button type="submit" id="btnEmailRegister"
-                        class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Criar conta
+                    <button type="submit" id="btnEmailRegister" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
+                        <i class="fa-solid fa-user-plus"></i> Criar conta
                     </button>
                 </form>
             </div>
@@ -261,19 +147,15 @@
                 </a>
             </div>
         </div>
-
-        <p class="text-center text-[11px] text-slate-400 mt-6">
-            &copy; 2026 KenArt GAMERSHOP
-        </p>
+        <p class="text-center text-[11px] text-slate-400 mt-6">&copy; 2026 KenArt GAMERSHOP</p>
     </div>
 </div>
 
 <!-- =============================================================
-     TELA 2: SETUP RÁPIDO (só para novos utilizadores)
+     TELA 2: SETUP RÁPIDO
 ============================================================= -->
 <div id="setupScreen" class="min-h-screen hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md">
-
         <div class="text-center mb-8">
             <div class="w-16 h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center mx-auto shadow-lg mb-4">
                 <i class="fa-solid fa-user-pen text-amber-400 text-2xl"></i>
@@ -283,72 +165,54 @@
         </div>
 
         <div class="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-8">
-
             <div id="setupAlert" class="mb-4 p-3 rounded-lg text-xs flex items-start gap-2 hidden"></div>
-
             <form id="setupForm" onsubmit="submitSetup(event)" class="space-y-4">
-
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Nome completo</label>
                     <div class="relative">
                         <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="text" id="setupName" required placeholder="Seu nome"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <input type="text" id="setupName" required placeholder="Seu nome" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
                 </div>
-
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Telefone / WhatsApp</label>
                     <div class="relative">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm font-mono font-bold">+244</span>
-                        <input type="tel" id="setupPhone" required placeholder="9XX XXX XXX" maxlength="9"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-16 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono"
-                            oninput="this.value = this.value.replace(/\D/g, '')">
+                        <input type="tel" id="setupPhone" required placeholder="9XX XXX XXX" maxlength="9" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 rounded-xl pl-16 pr-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono" oninput="this.value = this.value.replace(/\D/g, '')">
                     </div>
                 </div>
-
-                <button type="submit" id="btnFinishSetup"
-                    class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
-                    <i class="fa-solid fa-check"></i>
-                    Começar a comprar
+                <button type="submit" id="btnFinishSetup" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-50">
+                    <i class="fa-solid fa-check"></i> Começar a comprar
                 </button>
             </form>
-
             <div class="mt-4 text-center">
-                <button onclick="confirmLogout()" class="text-[11px] text-slate-500 hover:text-slate-700">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Sair
-                </button>
+                <button onclick="confirmLogout()" class="text-[11px] text-slate-500 hover:text-slate-700"><i class="fa-solid fa-arrow-left mr-1"></i> Sair</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- =============================================================
-     TELA 3: HOME (loja)
+     TELA 3: HOME (LOJA)
 ============================================================= -->
 <div id="mainScreen" class="min-h-screen flex flex-col hidden">
 
     <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-
             <button onclick="showHome()" class="flex items-center gap-3 group text-left">
                 <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-md group-hover:bg-brand-600 transition">
                     <i class="fa-solid fa-gamepad text-amber-400 text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="font-serif text-2xl font-bold tracking-tight text-slate-900 leading-none">
-                        Ken<span class="text-brand-600">Art</span>
-                    </h1>
+                    <h1 class="font-serif text-2xl font-bold tracking-tight text-slate-900 leading-none">Ken<span class="text-brand-600">Art</span></h1>
                     <span class="text-[10px] font-semibold tracking-widest text-slate-500 uppercase block mt-1">GAMERSHOP</span>
                 </div>
             </button>
-
             <div class="flex items-center gap-2">
                 <button onclick="openUserScreen()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">
                     <i class="fa-solid fa-user-circle text-brand-600"></i>
                     <span class="hidden sm:inline" id="headerUserName">Perfil</span>
                 </button>
-
                 <button onclick="openOrdersScreen()" class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">
                     <i class="fa-solid fa-clock-rotate-left text-brand-600"></i>
                     <span class="hidden sm:inline">Pedidos</span>
@@ -359,13 +223,10 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full flex-grow">
-
-        <!-- HERO -->
         <section class="mb-8 relative overflow-hidden rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white shadow-xl">
             <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-10 pointer-events-none hidden md:block">
                 <i class="fa-solid fa-crown text-[220px] text-amber-400 -mr-16 -mt-10"></i>
             </div>
-
             <div class="relative z-10 max-w-2xl">
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-4">
                     <i class="fa-solid fa-bolt"></i> Recargas Instantâneas em Angola 🇦🇴
@@ -376,15 +237,12 @@
                 <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                     Compre diamantes e passes com total segurança. Pagamento rápido via <strong>Multicaixa Express (MCX)</strong>, <strong>PayPay África</strong> ou <strong>Transferência IBAN</strong>.
                 </p>
-
                 <div class="flex flex-wrap items-center gap-3">
                     <a href="#catalog" class="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition shadow-lg flex items-center gap-2">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        Ver Catálogo
+                        <i class="fa-solid fa-cart-plus"></i> Ver Catálogo
                     </a>
                     <a href="https://wa.me/244929005720" target="_blank" class="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold rounded-xl transition flex items-center gap-2 border border-slate-700">
-                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                        Suporte
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> Suporte
                     </a>
                 </div>
             </div>
@@ -392,16 +250,12 @@
 
         <!-- SELETOR DE JOGO -->
         <section id="catalog" class="mb-6">
-
             <div class="mb-4">
                 <h3 class="font-serif text-xl sm:text-2xl font-bold text-slate-900">Escolha o Jogo</h3>
                 <p class="text-xs text-slate-500 mt-1">Preços atualizados em tempo real.</p>
             </div>
-
             <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
-
-                <button onclick="selectGame('ff')" id="gameTabFF"
-                    class="bg-white border-2 border-slate-900 rounded-2xl p-4 sm:p-6 text-left transition shadow-md hover:shadow-lg">
+                <button onclick="selectGame('ff')" id="gameTabFF" class="bg-white border-2 border-slate-900 rounded-2xl p-4 sm:p-6 text-left transition shadow-md hover:shadow-lg">
                     <div class="flex items-start justify-between mb-3">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-md">
                             <i class="fa-solid fa-fire text-white text-xl"></i>
@@ -409,15 +263,13 @@
                         <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-1 rounded-full">FF</span>
                     </div>
                     <h4 class="font-serif text-base sm:text-lg font-bold text-slate-900 mb-1">Free Fire</h4>
-                    <p class="text-[11px] text-slate-500 mb-3">Diamantes & Passes Booyah</p>
-                    <div class="flex items-center gap-1.5 text-[11px] font-semibold text-amber-700">
+                    <div class="flex items-center gap-1.5 text-[11px] font-semibold text-amber-700 mt-3">
                         <span id="ffCountBadge">0 itens</span>
                         <i class="fa-solid fa-arrow-right text-[9px]"></i>
                     </div>
                 </button>
 
-                <button onclick="selectGame('mlbb')" id="gameTabMLBB"
-                    class="bg-white border-2 border-slate-200 rounded-2xl p-4 sm:p-6 text-left transition shadow-md hover:shadow-lg hover:border-purple-400">
+                <button onclick="selectGame('mlbb')" id="gameTabMLBB" class="bg-white border-2 border-slate-200 rounded-2xl p-4 sm:p-6 text-left transition shadow-md hover:shadow-lg hover:border-purple-400">
                     <div class="flex items-start justify-between mb-3">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-400 to-fuchsia-600 flex items-center justify-center shadow-md">
                             <i class="fa-solid fa-shield-cat text-white text-xl"></i>
@@ -425,40 +277,29 @@
                         <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-1 rounded-full">MLBB</span>
                     </div>
                     <h4 class="font-serif text-base sm:text-lg font-bold text-slate-900 mb-1">Mobile Legends</h4>
-                    <p class="text-[11px] text-slate-500 mb-3">Diamantes & Passe Semanal</p>
-                    <div class="flex items-center gap-1.5 text-[11px] font-semibold text-purple-700">
+                    <div class="flex items-center gap-1.5 text-[11px] font-semibold text-purple-700 mt-3">
                         <span id="mlbbCountBadge">0 itens</span>
                         <i class="fa-solid fa-arrow-right text-[9px]"></i>
                     </div>
                 </button>
-
             </div>
-
         </section>
 
         <!-- CATÁLOGO -->
         <section>
-
             <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
                 <h3 id="catalogTitle" class="font-serif text-lg sm:text-xl font-bold text-slate-900">
-                    <i class="fa-solid fa-gem text-amber-500 mr-2"></i>
-                    Diamantes · Free Fire
+                    <i class="fa-solid fa-gem text-amber-500 mr-2"></i> Free Fire
                 </h3>
                 <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
-                    <button onclick="switchCategory('diamonds')" id="catTabDiamonds"
-                        class="px-3 py-1.5 rounded-md text-[11px] font-bold uppercase transition bg-slate-900 text-white shadow-sm">
-                        Diamantes
-                    </button>
-                    <button onclick="switchCategory('passes')" id="catTabPasses"
-                        class="px-3 py-1.5 rounded-md text-[11px] font-bold uppercase transition text-slate-600 hover:text-slate-900">
-                        Passes
-                    </button>
+                    <button onclick="switchCategory('diamonds')" id="catTabDiamonds" class="px-3 py-1.5 rounded-md text-[11px] font-bold uppercase transition bg-slate-900 text-white shadow-sm">Diamantes</button>
+                    <button onclick="switchCategory('passes')" id="catTabPasses" class="px-3 py-1.5 rounded-md text-[11px] font-bold uppercase transition text-slate-600 hover:text-slate-900">Passes</button>
                 </div>
             </div>
 
             <div id="catalogLoading" class="text-center py-16 text-slate-400">
                 <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 block text-brand-500"></i>
-                <p class="text-sm font-medium">A carregar catálogo...</p>
+                <p class="text-sm font-medium">A carregar...</p>
             </div>
 
             <div id="catalogEmpty" class="hidden text-center py-16">
@@ -470,43 +311,33 @@
             </div>
 
             <div id="catalogGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
-
         </section>
-
     </main>
 
     <footer class="border-t border-slate-200 bg-white py-5 mt-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
             <span>&copy; 2026 KenArt GAMERSHOP</span>
-            <a href="https://wa.me/244929005720" target="_blank" class="hover:text-slate-900 transition">
-                <i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> 929005720
-            </a>
+            <a href="https://wa.me/244929005720" target="_blank" class="hover:text-slate-900 transition"><i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> 929005720</a>
         </div>
     </footer>
-
 </div>
 
 <!-- =============================================================
-     TELA 4: CHECKOUT (substitui o modal)
+     TELA 4: CHECKOUT
 ============================================================= -->
 <div id="checkoutScreen" class="min-h-screen hidden flex flex-col">
-
     <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <button onclick="closeCheckout()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Voltar</span>
+                <i class="fa-solid fa-arrow-left"></i> <span>Voltar</span>
             </button>
             <div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                <i class="fa-solid fa-shield-halved text-brand-600"></i>
-                Compra Segura
+                <i class="fa-solid fa-shield-halved text-brand-600"></i> Compra Segura
             </div>
         </div>
     </header>
 
     <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
-
-        <!-- Progresso -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-5">
             <div class="flex items-center justify-between mb-3">
                 <div>
@@ -521,22 +352,16 @@
         </div>
 
         <form id="checkoutForm" onsubmit="submitCheckout(event)">
-
             <!-- ETAPA 1 -->
             <div id="checkoutStep1" class="step-section">
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
                     <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
                         <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">1</div>
-                        <div>
-                            <h3 class="font-serif text-base font-bold text-slate-900">Conta do Jogo</h3>
-                            <p class="text-[11px] text-slate-500">Onde vai receber a recarga.</p>
-                        </div>
+                        <div><h3 class="font-serif text-base font-bold text-slate-900">Conta do Jogo</h3><p class="text-[11px] text-slate-500">Onde vai receber.</p></div>
                     </div>
 
                     <div id="checkoutItemPreview" class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center">
-                            <i class="fa-solid fa-gem"></i>
-                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center"><i class="fa-solid fa-gem"></i></div>
                         <div class="flex-1">
                             <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Item selecionado</p>
                             <p class="text-sm font-bold text-slate-900" id="checkoutItemName">—</p>
@@ -545,40 +370,21 @@
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                            ID do jogador <span class="text-rose-500">*</span>
-                        </label>
-                        <input type="text" id="coPlayerId" required placeholder="O seu ID no jogo"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">ID do jogador *</label>
+                        <input type="text" id="coPlayerId" required placeholder="O seu ID" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono">
                     </div>
-
                     <div id="coZoneWrapper" class="hidden">
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                            Zone ID <span class="text-rose-500">*</span>
-                        </label>
-                        <input type="text" id="coZoneId" placeholder="Ex: 1234" maxlength="5"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono"
-                            oninput="this.value = this.value.replace(/\D/g, '')">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Zone ID *</label>
+                        <input type="text" id="coZoneId" placeholder="Ex: 1234" maxlength="5" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm font-mono" oninput="this.value = this.value.replace(/\D/g, '')">
                     </div>
-
                     <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                            Nickname <span class="text-rose-500">*</span>
-                        </label>
-                        <input type="text" id="coNick" required placeholder="O seu nickname no jogo"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Nickname *</label>
+                        <input type="text" id="coNick" required placeholder="O seu nickname" class="w-full bg-slate-50 border border-slate-300 focus:border-brand-600 focus:bg-white rounded-xl px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition text-sm">
                     </div>
-
-                    <p class="text-[11px] text-slate-500 flex items-start gap-1.5">
-                        <i class="fa-solid fa-circle-info mt-0.5"></i>
-                        Confirme estes dados. Não é possível reverter uma recarga enviada para o ID errado.
-                    </p>
 
                     <div class="pt-3 border-t border-slate-100 flex justify-end">
-                        <button type="button" onclick="goCheckoutStep(2)"
-                            class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center gap-2">
-                            Continuar
-                            <i class="fa-solid fa-arrow-right"></i>
+                        <button type="button" onclick="goCheckoutStep(2)" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center gap-2">
+                            Continuar <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -589,53 +395,31 @@
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
                     <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
                         <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">2</div>
-                        <div>
-                            <h3 class="font-serif text-base font-bold text-slate-900">Pagamento</h3>
-                            <p class="text-[11px] text-slate-500">Escolha como quer pagar.</p>
-                        </div>
+                        <div><h3 class="font-serif text-base font-bold text-slate-900">Pagamento</h3><p class="text-[11px] text-slate-500">Escolha o método.</p></div>
                     </div>
 
                     <div class="grid grid-cols-1 gap-2">
-
                         <label class="cursor-pointer">
                             <input type="radio" name="coPayment" value="express" checked class="peer hidden" onchange="updatePayInfo()">
                             <div class="p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-emerald-600 peer-checked:bg-emerald-50/40 peer-checked:ring-2 peer-checked:ring-emerald-600/20 transition flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-mobile-screen-button"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold text-slate-900 text-sm">Multicaixa Express</h4>
-                                    <p class="text-[11px] text-slate-500">Sem taxas · Instantâneo</p>
-                                </div>
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                <div class="flex-1"><h4 class="font-bold text-slate-900 text-sm">Multicaixa Express</h4><p class="text-[11px] text-slate-500">Sem taxas</p></div>
                             </div>
                         </label>
-
                         <label class="cursor-pointer">
                             <input type="radio" name="coPayment" value="paypay" class="peer hidden" onchange="updatePayInfo()">
                             <div class="p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-sky-500 peer-checked:bg-sky-50/40 peer-checked:ring-2 peer-checked:ring-sky-500/20 transition flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-wallet"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold text-slate-900 text-sm">PayPay África</h4>
-                                    <p class="text-[11px] text-slate-500">Carteira digital</p>
-                                </div>
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-wallet"></i></div>
+                                <div class="flex-1"><h4 class="font-bold text-slate-900 text-sm">PayPay África</h4><p class="text-[11px] text-slate-500">Carteira digital</p></div>
                             </div>
                         </label>
-
                         <label class="cursor-pointer">
                             <input type="radio" name="coPayment" value="iban" class="peer hidden" onchange="updatePayInfo()">
                             <div class="p-4 rounded-xl bg-white border border-slate-200 peer-checked:border-brand-600 peer-checked:bg-sky-50/40 peer-checked:ring-2 peer-checked:ring-brand-600/20 transition flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-building-columns"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold text-slate-900 text-sm">Transferência IBAN</h4>
-                                    <p class="text-[11px] text-slate-500">BAI / BFA / BIC / Atlântico</p>
-                                </div>
+                                <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-building-columns"></i></div>
+                                <div class="flex-1"><h4 class="font-bold text-slate-900 text-sm">Transferência IBAN</h4><p class="text-[11px] text-slate-500">BAI / BFA / BIC</p></div>
                             </div>
                         </label>
-
                     </div>
 
                     <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
@@ -644,15 +428,8 @@
                     </div>
 
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                        <button type="button" onclick="goCheckoutStep(1)" class="px-4 py-3 text-slate-600 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Voltar
-                        </button>
-                        <button type="button" onclick="goCheckoutStep(3)"
-                            class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center gap-2">
-                            Continuar
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button type="button" onclick="goCheckoutStep(1)" class="px-4 py-3 text-slate-600 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                        <button type="button" onclick="goCheckoutStep(3)" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center gap-2">Continuar <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -661,13 +438,8 @@
             <div id="checkoutStep3" class="step-section hidden">
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
                     <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
-                        <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">
-                            <i class="fa-solid fa-check text-[10px]"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-base font-bold text-slate-900">Confirmar</h3>
-                            <p class="text-[11px] text-slate-500">Verifique antes de finalizar.</p>
-                        </div>
+                        <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-check text-[10px]"></i></div>
+                        <div><h3 class="font-serif text-base font-bold text-slate-900">Confirmar</h3><p class="text-[11px] text-slate-500">Verifique os dados.</p></div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 text-xs font-mono">
@@ -683,45 +455,30 @@
                             <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Total a Pagar</span>
                             <span id="coSumTotal" class="text-2xl font-bold font-mono text-amber-400">0 Kz</span>
                         </div>
-                        <div class="w-11 h-11 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                            <i class="fa-solid fa-lock text-emerald-400"></i>
-                        </div>
+                        <div class="w-11 h-11 rounded-full bg-emerald-500/20 flex items-center justify-center"><i class="fa-solid fa-lock text-emerald-400"></i></div>
                     </div>
 
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                        <button type="button" onclick="goCheckoutStep(2)" class="px-4 py-3 text-slate-600 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Voltar
-                        </button>
-                        <button type="submit" id="coSubmitBtn"
-                            class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center gap-2 disabled:opacity-50">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Finalizar Pedido
-                        </button>
+                        <button type="button" onclick="goCheckoutStep(2)" class="px-4 py-3 text-slate-600 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                        <button type="submit" id="coSubmitBtn" class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition shadow-sm flex items-center gap-2 disabled:opacity-50"><i class="fa-solid fa-paper-plane"></i> Finalizar Pedido</button>
                     </div>
                 </div>
             </div>
-
         </form>
     </main>
 </div>
 
 <!-- =============================================================
-     TELA 5: RECIBO (substitui o modal)
+     TELA 5: RECIBO
 ============================================================= -->
 <div id="receiptScreen" class="min-h-screen hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md">
-
         <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
-
             <div class="text-center pb-5 border-b border-slate-100 p-6 bg-gradient-to-br from-emerald-50 to-white">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fa-solid fa-check text-2xl"></i>
-                </div>
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fa-solid fa-check text-2xl"></i></div>
                 <h3 class="font-serif text-xl font-bold text-slate-900">Pedido Criado!</h3>
                 <p class="text-xs text-slate-500 mt-1">Envie o comprovativo no WhatsApp.</p>
             </div>
-
             <div class="p-5 space-y-4 font-mono text-xs">
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2.5">
                     <div class="flex justify-between"><span class="text-slate-500">CÓDIGO:</span><span id="ticketCode" class="font-bold text-slate-900">#—</span></div>
@@ -729,27 +486,16 @@
                     <div class="flex justify-between"><span class="text-slate-500">ITEM:</span><span id="ticketItem" class="font-bold text-slate-900">—</span></div>
                     <div class="flex justify-between"><span class="text-slate-500">ID:</span><span id="ticketId" class="font-bold text-brand-600">—</span></div>
                     <div class="flex justify-between"><span class="text-slate-500">MÉTODO:</span><span id="ticketMethod" class="text-slate-700">—</span></div>
-                    <div class="flex justify-between border-t border-slate-200 pt-2.5 text-sm">
-                        <span class="text-slate-900 font-bold">TOTAL:</span>
-                        <span id="ticketTotal" class="font-bold text-emerald-600">—</span>
-                    </div>
+                    <div class="flex justify-between border-t border-slate-200 pt-2.5 text-sm"><span class="text-slate-900 font-bold">TOTAL:</span><span id="ticketTotal" class="font-bold text-emerald-600">—</span></div>
                 </div>
-
                 <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-800 flex gap-2 items-start">
                     <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i>
                     <span>Envie o comprovativo no WhatsApp <strong>929005720</strong> para acelerar a entrega.</span>
                 </div>
             </div>
-
             <div class="px-5 pb-5 flex flex-col gap-2">
-                <a id="waLink" href="#" target="_blank"
-                    class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase text-center transition tracking-wider flex items-center justify-center gap-2 text-xs shadow-sm">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    Enviar no WhatsApp
-                </a>
-                <button onclick="closeReceipt()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-semibold text-slate-700 transition">
-                    Voltar à Loja
-                </button>
+                <a id="waLink" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase text-center transition tracking-wider flex items-center justify-center gap-2 text-xs shadow-sm"><i class="fa-brands fa-whatsapp text-lg"></i> Enviar no WhatsApp</a>
+                <button onclick="closeReceipt()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-semibold text-slate-700 transition">Voltar à Loja</button>
             </div>
         </div>
     </div>
@@ -759,70 +505,39 @@
      TELA 6: PERFIL DO UTILIZADOR
 ============================================================= -->
 <div id="userScreen" class="min-h-screen hidden flex flex-col">
-
     <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <button onclick="closeUserScreen()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Voltar</span>
-            </button>
+            <button onclick="closeUserScreen()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
             <h2 class="font-serif text-base font-bold text-slate-900">A Minha Conta</h2>
             <div class="w-20"></div>
         </div>
     </header>
 
     <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
-
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-
             <div class="p-6 bg-gradient-to-br from-brand-50 to-white border-b border-slate-100 text-center">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-brand-500 to-mlbb-600 flex items-center justify-center mx-auto mb-3 shadow-lg">
-                    <i class="fa-solid fa-user text-white text-2xl"></i>
-                </div>
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-brand-500 to-mlbb-600 flex items-center justify-center mx-auto mb-3 shadow-lg"><i class="fa-solid fa-user text-white text-2xl"></i></div>
                 <h3 class="font-serif text-xl font-bold text-slate-900" id="userScreenName">—</h3>
                 <p class="text-xs text-slate-500 font-mono mt-1" id="userScreenPhone">—</p>
             </div>
-
             <div class="p-6 space-y-3">
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center">
-                            <i class="fa-solid fa-envelope text-brand-600 text-sm"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-600">Email</span>
-                    </div>
+                    <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center"><i class="fa-solid fa-envelope text-brand-600 text-sm"></i></div><span class="text-xs font-semibold text-slate-600">Email</span></div>
                     <span id="userScreenEmail" class="text-xs font-mono text-slate-900 truncate max-w-[200px]">—</span>
                 </div>
-
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center">
-                            <i class="fa-solid fa-gamepad text-amber-600 text-sm"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-600">Jogo preferido</span>
-                    </div>
+                    <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center"><i class="fa-solid fa-gamepad text-amber-600 text-sm"></i></div><span class="text-xs font-semibold text-slate-600">Jogo preferido</span></div>
                     <span id="userScreenGame" class="text-xs font-mono text-slate-900">—</span>
                 </div>
-
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center">
-                            <i class="fa-solid fa-receipt text-emerald-600 text-sm"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-600">Total de pedidos</span>
-                    </div>
+                    <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center"><i class="fa-solid fa-receipt text-emerald-600 text-sm"></i></div><span class="text-xs font-semibold text-slate-600">Total de pedidos</span></div>
                     <span id="userScreenOrders" class="text-xs font-mono text-slate-900">0</span>
                 </div>
             </div>
-
             <div class="p-6 pt-0">
-                <button onclick="confirmLogout()" class="w-full py-3.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    Terminar Sessão
-                </button>
+                <button onclick="confirmLogout()" class="w-full py-3.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2"><i class="fa-solid fa-arrow-right-from-bracket"></i> Terminar Sessão</button>
             </div>
         </div>
-
     </main>
 </div>
 
@@ -830,32 +545,22 @@
      TELA 7: MEUS PEDIDOS
 ============================================================= -->
 <div id="ordersScreen" class="min-h-screen hidden flex flex-col">
-
     <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <button onclick="closeOrdersScreen()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Voltar</span>
-            </button>
+            <button onclick="closeOrdersScreen()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
             <h2 class="font-serif text-base font-bold text-slate-900">Meus Pedidos</h2>
             <div class="w-20"></div>
         </div>
     </header>
 
     <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
-
         <div class="mb-5">
             <h3 class="font-serif text-xl font-bold text-slate-900">Histórico</h3>
             <p class="text-xs text-slate-500 mt-1">Os seus pedidos em tempo real.</p>
         </div>
-
         <div id="ordersList" class="space-y-3">
-            <div class="text-center py-16 text-slate-400">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 block text-brand-500"></i>
-                <p class="text-sm font-medium">A carregar...</p>
-            </div>
+            <div class="text-center py-16 text-slate-400"><i class="fa-solid fa-spinner fa-spin text-3xl mb-3 block text-brand-500"></i><p class="text-sm font-medium">A carregar...</p></div>
         </div>
-
     </main>
 </div>
 
@@ -866,7 +571,7 @@
 </div>
 
 <!-- =============================================================
-     SCRIPT
+     SCRIPT DA LOJA
 ============================================================= -->
 <script>
     const _cfg = (function () {
@@ -900,7 +605,6 @@
     let pricesListener = null;
     let ordersListener = null;
 
-    /* SCREENS */
     const SCREENS = ['authScreen', 'setupScreen', 'mainScreen', 'checkoutScreen', 'receiptScreen', 'userScreen', 'ordersScreen'];
 
     function showScreen(id) {
@@ -944,7 +648,6 @@
     }
     function hideSetupAlert() { const b = document.getElementById('setupAlert'); if (b) b.classList.add('hidden'); }
 
-    /* TABS AUTH */
     function switchAuthTab(tab) {
         const login = document.getElementById('loginPanel');
         const register = document.getElementById('registerPanel');
@@ -962,7 +665,6 @@
         hideAuthAlert();
     }
 
-    /* AUTH */
     async function handleGoogleLogin() {
         hideAuthAlert();
         const btn = document.getElementById('btnLoginGoogle');
@@ -980,10 +682,7 @@
         const btn = document.getElementById('btnEmailLogin');
         btn.disabled = true;
         try {
-            await auth.signInWithEmailAndPassword(
-                document.getElementById('loginEmail').value.trim(),
-                document.getElementById('loginPassword').value
-            );
+            await auth.signInWithEmailAndPassword(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value);
         } catch (err) {
             let m = 'Erro ao entrar.';
             if (['auth/user-not-found','auth/wrong-password','auth/invalid-credential'].includes(err.code)) m = 'Email ou palavra-passe incorretos.';
@@ -1011,10 +710,7 @@
         const btn = document.getElementById('btnEmailRegister');
         btn.disabled = true;
         try {
-            await auth.createUserWithEmailAndPassword(
-                document.getElementById('registerEmail').value.trim(),
-                pass
-            );
+            await auth.createUserWithEmailAndPassword(document.getElementById('registerEmail').value.trim(), pass);
         } catch (err) {
             let m = 'Erro ao criar conta.';
             if (err.code === 'auth/email-already-in-use') m = 'Este email já está em uso.';
@@ -1023,7 +719,6 @@
         } finally { btn.disabled = false; }
     }
 
-    /* AUTH STATE */
     auth.onAuthStateChanged(async function (user) {
         if (user) {
             currentUser = user;
@@ -1052,7 +747,6 @@
         } catch (err) { currentProfile = null; }
     }
 
-    /* SETUP */
     async function submitSetup(e) {
         e.preventDefault(); hideSetupAlert();
         const name = document.getElementById('setupName').value.trim();
@@ -1066,13 +760,8 @@
 
         try {
             const data = {
-                uid: currentUser.uid,
-                name: name,
-                phone: phone,
-                email: currentUser.email || '',
-                mainGame: 'ff',
-                completed: true,
-                createdAt: Date.now()
+                uid: currentUser.uid, name, phone,
+                email: currentUser.email || '', mainGame: 'ff', completed: true, createdAt: Date.now()
             };
             await db.ref('users/' + currentUser.uid).set(data);
             currentProfile = data;
@@ -1086,19 +775,16 @@
             showToast('Bem-vindo à KenArt!', 'success');
 
         } catch (err) {
-            console.error(err);
             showSetupAlert('Erro ao guardar. Tente novamente.');
         } finally { btn.disabled = false; }
     }
 
-    /* LOGOUT */
     async function confirmLogout() {
         stopPrices();
         stopUserOrders();
         await auth.signOut();
     }
 
-    /* USER SCREEN */
     function openUserScreen() {
         if (!currentProfile) return;
         document.getElementById('userScreenName').textContent = currentProfile.name || 'Utilizador';
@@ -1113,12 +799,8 @@
         showScreen('mainScreen');
     }
 
-    /* HOME */
-    function showHome() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    function showHome() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-    /* PREÇOS */
     function startPrices() {
         if (pricesListener) return;
         pricesListener = db.ref('prices').on('value', function (snap) {
@@ -1163,9 +845,6 @@
     function renderCatalog() {
         const grid = document.getElementById('catalogGrid');
         const empty = document.getElementById('catalogEmpty');
-        const loading = document.getElementById('catalogLoading');
-
-        loading.classList.add('hidden');
 
         document.getElementById('ffCountBadge').textContent = allPrices.filter(p => p.game === 'ff').length + ' itens';
         document.getElementById('mlbbCountBadge').textContent = allPrices.filter(p => p.game === 'mlbb').length + ' itens';
@@ -1181,37 +860,30 @@
         }
         empty.classList.add('hidden');
 
-        const isFF = selectedGame === 'ff';
-        grid.innerHTML = filtered.map(p => renderItemCard(p, isFF)).join('');
+        grid.innerHTML = filtered.map(p => {
+            // Usa as cores configuradas ou o padrão
+            const bgColor = p.bgColor || (p.game === 'ff' ? '#fffbeb' : '#f5f3ff');
+            const textColor = p.textColor || (p.game === 'ff' ? '#92400e' : '#5b21b6');
+            const btnClass = p.category === 'passes' ? 'bg-amber-600 hover:bg-amber-700' : (p.game === 'ff' ? 'bg-amber-600 hover:bg-amber-700' : 'bg-purple-700 hover:bg-purple-800');
+
+            return '<div class="price-card p-4 flex flex-col relative" style="background-color:' + bgColor + '; border-color:' + textColor + '30;">' +
+                (p.popular ? '<span class="absolute -top-2 left-3 bg-black/10 text-[9px] font-black uppercase px-2 py-0.5 rounded-full z-10" style="color:' + textColor + '">TOP</span>' : '') +
+                '<div class="text-center my-2">' +
+                    '<div class="w-12 h-12 mx-auto rounded-xl bg-black/5 flex items-center justify-center mb-2">' +
+                        '<i class="fa-solid ' + (p.category === 'passes' ? 'fa-ticket' : 'fa-gem') + ' text-xl" style="color:' + textColor + '"></i>' +
+                    '</div>' +
+                    '<h4 class="font-bold text-sm leading-tight" style="color:' + textColor + '">' + escapeHtml(p.name) + '</h4>' +
+                '</div>' +
+                '<div class="mt-auto pt-3 border-t mt-2" style="border-color:' + textColor + '20;">' +
+                    '<div class="text-center mb-2">' +
+                        '<span class="font-mono font-bold text-base" style="color:' + textColor + '">' + formatKz(p.price) + '</span>' +
+                    '</div>' +
+                    '<button onclick="openCheckout(\'' + p.key + '\')" class="w-full py-2 ' + btnClass + ' text-white text-xs font-bold uppercase tracking-wider rounded-lg transition">Comprar</button>' +
+                '</div>' +
+            '</div>';
+        }).join('');
     }
 
-    function renderItemCard(p, isFF) {
-        const popular = p.popular ? '<span class="absolute -top-2 left-3 bg-slate-900 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-sm z-10">TOP</span>' : '';
-        const iconClass = p.category === 'passes' ? 'fa-ticket' : 'fa-gem';
-        const iconColor = isFF ? 'text-amber-500' : 'text-purple-500';
-        const btnClass = p.category === 'passes'
-            ? 'bg-amber-600 hover:bg-amber-700'
-            : (isFF ? 'bg-amber-600 hover:bg-amber-700' : 'bg-purple-700 hover:bg-purple-800');
-
-        return '<div class="price-card ' + (isFF ? 'ff' : 'mlbb') + ' p-4 flex flex-col relative">' +
-            popular +
-            '<div class="text-center my-2">' +
-                '<div class="w-12 h-12 mx-auto rounded-xl bg-slate-50 flex items-center justify-center mb-2">' +
-                    '<i class="fa-solid ' + iconClass + ' ' + iconColor + ' text-xl gem-pulse"></i>' +
-                '</div>' +
-                '<h4 class="font-bold text-slate-900 text-sm leading-tight">' + escapeHtml(p.name) + '</h4>' +
-                (p.description ? '<p class="text-[10px] text-slate-500 mt-1 truncate">' + escapeHtml(p.description) + '</p>' : '') +
-            '</div>' +
-            '<div class="mt-auto pt-3 border-t border-slate-100">' +
-                '<div class="text-center mb-2">' +
-                    '<span class="font-mono font-bold text-slate-900 text-base">' + formatKz(p.price) + '</span>' +
-                '</div>' +
-                '<button onclick="openCheckout(\'' + p.key + '\')" class="w-full py-2 ' + btnClass + ' text-white text-xs font-bold uppercase tracking-wider rounded-lg transition">Comprar</button>' +
-            '</div>' +
-        '</div>';
-    }
-
-    /* CHECKOUT */
     function openCheckout(itemKey) {
         selectedItem = allPrices.find(p => p.key === itemKey);
         if (!selectedItem) return;
@@ -1229,9 +901,7 @@
         showScreen('checkoutScreen');
     }
 
-    function closeCheckout() {
-        showScreen('mainScreen');
-    }
+    function closeCheckout() { showScreen('mainScreen'); }
 
     function goCheckoutStep(step) {
         if (step > checkoutStep) {
@@ -1263,13 +933,9 @@
     function updatePayInfo() {
         const method = document.querySelector('input[name="coPayment"]:checked').value;
         const box = document.getElementById('coPayInfo');
-        if (method === 'express') {
-            box.innerHTML = '<div class="flex justify-between"><span class="text-slate-500">Número:</span><span class="text-emerald-700 font-bold">929 005 720</span></div><p class="text-[10px] text-slate-500 mt-1">Enviar comprovativo via WhatsApp.</p>';
-        } else if (method === 'paypay') {
-            box.innerHTML = '<div class="flex justify-between"><span class="text-slate-500">Número:</span><span class="text-sky-700 font-bold">929 005 720</span></div><p class="text-[10px] text-slate-500 mt-1">Titular: KenArt GAMERSHOP</p>';
-        } else {
-            box.innerHTML = '<div class="text-slate-500 mb-1">IBAN BAI:</div><span class="text-brand-700 font-bold break-all text-[11px]">AO06.0040.0000.4541.7639.1017.7</span>';
-        }
+        if (method === 'express') box.innerHTML = '<div class="flex justify-between"><span class="text-slate-500">Número:</span><span class="text-emerald-700 font-bold">929 005 720</span></div><p class="text-[10px] text-slate-500 mt-1">Enviar comprovativo via WhatsApp.</p>';
+        else if (method === 'paypay') box.innerHTML = '<div class="flex justify-between"><span class="text-slate-500">Número:</span><span class="text-sky-700 font-bold">929 005 720</span></div><p class="text-[10px] text-slate-500 mt-1">Titular: KenArt GAMERSHOP</p>';
+        else box.innerHTML = '<div class="text-slate-500 mb-1">IBAN BAI:</div><span class="text-brand-700 font-bold break-all text-[11px]">AO06.0040.0000.4541.7639.1017.7</span>';
     }
 
     function updateSummary() {
@@ -1343,14 +1009,12 @@
             showScreen('receiptScreen');
 
         } catch (err) {
-            console.error(err);
             showToast('Erro ao criar pedido.', 'error');
         } finally { btn.disabled = false; }
     }
 
     function closeReceipt() { showScreen('mainScreen'); }
 
-    /* PEDIDOS */
     function startUserOrders(uid) {
         if (ordersListener) return;
         ordersListener = db.ref('orders').orderByChild('uid').equalTo(uid).on('value', function (snap) {
@@ -1365,13 +1029,8 @@
         if (ordersListener) { db.ref('orders').off('value', ordersListener); ordersListener = null; allUserOrders = []; }
     }
 
-    function openOrdersScreen() {
-        renderOrdersList();
-        showScreen('ordersScreen');
-    }
-    function closeOrdersScreen() {
-        showScreen('mainScreen');
-    }
+    function openOrdersScreen() { renderOrdersList(); showScreen('ordersScreen'); }
+    function closeOrdersScreen() { showScreen('mainScreen'); }
 
     function renderOrdersList() {
         const list = document.getElementById('ordersList');
@@ -1380,12 +1039,8 @@
             return;
         }
         const labels = { pending: 'Pendente', processing: 'Em Processo', completed: 'Concluído', cancelled: 'Cancelado' };
-        const colors = {
-            pending: 'bg-amber-100 text-amber-800',
-            processing: 'bg-blue-100 text-blue-800',
-            completed: 'bg-emerald-100 text-emerald-800',
-            cancelled: 'bg-rose-100 text-rose-800'
-        };
+        const colors = { pending: 'bg-amber-100 text-amber-800', processing: 'bg-blue-100 text-blue-800', completed: 'bg-emerald-100 text-emerald-800', cancelled: 'bg-rose-100 text-rose-800' };
+        
         list.innerHTML = allUserOrders.map(o => {
             const st = o.status || 'pending';
             return '<div class="p-4 bg-white rounded-xl border border-slate-200 font-mono text-xs flex flex-col gap-1.5 shadow-sm">' +
@@ -1396,12 +1051,8 @@
         }).join('');
     }
 
-    /* UTILS */
     function formatKz(v) { return (parseInt(v) || 0).toLocaleString('pt-AO') + ' Kz'; }
-    function escapeHtml(s) {
-        if (s === null || s === undefined) return '';
-        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
-    }
+    function escapeHtml(s) { if (s === null || s === undefined) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
 </script>
 
 </body>
