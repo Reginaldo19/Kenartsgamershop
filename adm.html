@@ -113,21 +113,10 @@
             background: #cbd5e1;
         }
 
-        .order-card.status-pending::before {
-            background: #f59e0b;
-        }
-
-        .order-card.status-processing::before {
-            background: #3b82f6;
-        }
-
-        .order-card.status-completed::before {
-            background: #10b981;
-        }
-
-        .order-card.status-cancelled::before {
-            background: #ef4444;
-        }
+        .order-card.status-pending::before { background: #f59e0b; }
+        .order-card.status-processing::before { background: #3b82f6; }
+        .order-card.status-completed::before { background: #10b981; }
+        .order-card.status-cancelled::before { background: #ef4444; }
 
         .badge {
             font-size: 0.65rem;
@@ -138,25 +127,10 @@
             letter-spacing: 0.03em;
         }
 
-        .badge-pending {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .badge-processing {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .badge-completed {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-cancelled {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+        .badge-pending { background: #fef3c7; color: #92400e; }
+        .badge-processing { background: #dbeafe; color: #1e40af; }
+        .badge-completed { background: #d1fae5; color: #065f46; }
+        .badge-cancelled { background: #fee2e2; color: #991b1b; }
 
         .price-card {
             background: #ffffff;
@@ -203,23 +177,10 @@
             opacity: 0;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0284c7;
-        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
@@ -328,17 +289,14 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
 
-        <!-- Tabs principais -->
         <div class="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 mb-6 max-w-md">
             <button type="button" onclick="switchAdminTab('orders')" id="adminTabOrders"
                 class="flex-1 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition bg-slate-900 text-white shadow-sm flex items-center justify-center gap-2">
-                <i class="fa-solid fa-receipt"></i>
-                Pedidos
+                <i class="fa-solid fa-receipt"></i> Pedidos
             </button>
             <button type="button" onclick="switchAdminTab('prices')" id="adminTabPrices"
                 class="flex-1 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-tags"></i>
-                Tabelas de Preços
+                <i class="fa-solid fa-tags"></i> Tabelas de Preços
             </button>
         </div>
 
@@ -658,23 +616,6 @@
     </div>
 </div>
 
-<!-- POP-UP: CONFIRMAR CADASTRO ADM -->
-<div id="registerConfirmPopup" class="popup-overlay popup-hidden fixed inset-0 z-[55] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-    <div class="popup-card bg-white w-full max-w-sm rounded-2xl border border-slate-200 shadow-2xl p-6">
-        <div class="text-center mb-5">
-            <div class="w-14 h-14 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
-                <i class="fa-solid fa-user-shield text-xl"></i>
-            </div>
-            <h3 class="font-serif text-lg font-bold text-slate-900 mb-1">Criar ADM?</h3>
-            <p class="text-xs text-slate-500">Esta conta será o administrador único.</p>
-        </div>
-        <div class="flex gap-2">
-            <button onclick="closeRegisterConfirm()" class="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs uppercase transition">Cancelar</button>
-            <button onclick="confirmRegister()" class="flex-1 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs uppercase transition">Confirmar</button>
-        </div>
-    </div>
-</div>
-
 <!-- POP-UP: ADICIONAR / EDITAR PREÇO (COM SELEÇÃO DE CORES) -->
 <div id="priceFormPopup" class="popup-overlay popup-hidden fixed inset-0 z-[55] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
     <div class="popup-card bg-white w-full max-w-md rounded-2xl border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
@@ -788,7 +729,7 @@
 </div>
 
 <!-- =============================================================
-     SCRIPT DO ADMIN
+     SCRIPT DO ADMIN (CORRIGIDO)
 ============================================================= -->
 <script>
     const _cfg = (function () {
@@ -821,7 +762,6 @@
     let ordersListener = null;
     let pricesListener = null;
     let adminUid = null;
-    let pendingRegisterUser = null;
 
     function openPopup(id) { const el = document.getElementById(id); if (el) el.classList.remove('popup-hidden'); }
     function closePopup(id) { const el = document.getElementById(id); if (el) el.classList.add('popup-hidden'); }
@@ -848,13 +788,25 @@
         if (user) {
             try {
                 const uid = await getAdminUid();
-                if (!uid) { await auth.signOut(); showAuthAlert('Nenhum administrador registado.', 'warn'); return; }
-                if (user.uid !== uid) { await auth.signOut(); showAuthAlert('Esta conta não é o administrador principal.', 'error'); return; }
+                
+                if (!uid) {
+                    await auth.signOut();
+                    showAuthAlert('Nenhum administrador registado. Use "Cadastrar ADM".', 'warn');
+                    return;
+                }
+
+                if (user.uid !== uid) {
+                    await auth.signOut();
+                    showAuthAlert('Esta conta não é o administrador principal.', 'error');
+                    return;
+                }
+
                 document.getElementById('authScreen').classList.add('hidden');
                 document.getElementById('dashboardScreen').classList.remove('hidden');
                 document.getElementById('adminEmail').textContent = user.email || user.displayName || 'ADM';
                 startOrdersListener();
                 startPricesListener();
+
             } catch (err) {
                 console.error(err);
                 await auth.signOut();
@@ -887,44 +839,61 @@
         } finally { btn.disabled = false; label.textContent = orig; }
     }
 
+    // ==========================================
+    // CORREÇÃO: Cadastro sem modal de confirmação
+    // Autentica primeiro, depois verifica e grava.
+    // ==========================================
     async function handleGoogleRegister() {
         hideAuthAlert();
-        try {
-            const existingUid = await getAdminUid();
-            if (existingUid) { showAuthAlert('Já existe um ADM. Cadastro bloqueado.', 'warn'); return; }
-            openPopup('registerConfirmPopup');
-        } catch (err) { showAuthAlert('Erro ao verificar registo.', 'error'); }
-    }
-
-    function closeRegisterConfirm() { closePopup('registerConfirmPopup'); }
-
-    async function confirmRegister() {
-        closePopup('registerConfirmPopup');
         const btn = document.getElementById('btnRegisterGoogle');
         const label = document.getElementById('btnRegisterGoogleText');
         const orig = label.textContent;
-        btn.disabled = true; label.textContent = 'A cadastrar...';
+        btn.disabled = true; label.textContent = 'A processar...';
+        
         try {
-            const existingUid = await getAdminUid();
-            if (existingUid) { showAuthAlert('Já existe um ADM.', 'warn'); return; }
+            // 1. Autentica com o Google primeiro (isto resolve o problema de permissões)
             const result = await auth.signInWithPopup(googleProvider);
             const user = result.user;
+
+            // 2. Com o utilizador autenticado, verifica se já existe um ADM na base de dados
+            const existingUid = await getAdminUid();
+            if (existingUid) {
+                if (existingUid === user.uid) {
+                    // Já é o ADM, só entra
+                    showAuthAlert('Bem-vindo de volta!', 'success');
+                    return;
+                } else {
+                    // Outro ADM já existe
+                    await auth.signOut();
+                    showAuthAlert('Já existe um administrador registado. O cadastro está bloqueado.', 'warn');
+                    return;
+                }
+            }
+
+            // 3. Se não existir ADM, usa uma transação para garantir que só um é criado
             let granted = false;
             await db.ref(ADMIN_UID_PATH).transaction(function (current) {
-                if (current === null) { granted = true; return user.uid; }
+                if (current === null) {
+                    granted = true;
+                    return user.uid;
+                }
                 return;
             });
+
             if (!granted) {
                 await auth.signOut();
-                showAuthAlert('Alguém já se registou como ADM.', 'warn');
+                showAuthAlert('Alguém já se registou como ADM enquanto processava.', 'warn');
                 return;
             }
-            await auth.signOut();
-            showAuthAlert('ADM criado! Agora use "Entrar com Google".', 'success');
+
+            // 4. Sucesso
+            showAuthAlert('Conta ADM criada com sucesso!', 'success');
+
         } catch (err) {
             console.error(err);
             if (err.code === 'auth/popup-closed-by-user') return;
-            showAuthAlert('Erro ao cadastrar.', 'error');
+            if (err.code === 'auth/popup-blocked') showAuthAlert('Popup bloqueado. Permita popups.', 'error');
+            else showAuthAlert('Erro ao cadastrar.', 'error');
         } finally { btn.disabled = false; label.textContent = orig; }
     }
 
@@ -1055,7 +1024,6 @@
         empty.classList.add('hidden');
 
         container.innerHTML = filtered.map(p => {
-            // Usa as cores configuradas ou o padrão
             const bgColor = p.bgColor || (p.game === 'ff' ? '#fffbeb' : '#f5f3ff');
             const textColor = p.textColor || (p.game === 'ff' ? '#92400e' : '#5b21b6');
             
@@ -1151,7 +1119,6 @@
         } catch (err) { showToast('Erro ao alterar estado.', 'error'); }
     }
 
-    // Funções de Cores
     document.getElementById('priceBgColor').addEventListener('input', function() {
         document.getElementById('bgColorHex').textContent = this.value;
     });
@@ -1168,7 +1135,6 @@
         document.getElementById('priceOrder').value = '';
         document.getElementById('pricePopular').checked = false;
         
-        // Cores padrão
         document.getElementById('priceBgColor').value = '#ffffff';
         document.getElementById('priceTextColor').value = '#0f172a';
         document.getElementById('bgColorHex').textContent = '#ffffff';
@@ -1193,7 +1159,6 @@
         document.getElementById('priceOrder').value = item.order || '';
         document.getElementById('pricePopular').checked = !!item.popular;
         
-        // Cores
         document.getElementById('priceBgColor').value = item.bgColor || '#ffffff';
         document.getElementById('priceTextColor').value = item.textColor || '#0f172a';
         document.getElementById('bgColorHex').textContent = item.bgColor || '#ffffff';
@@ -1285,12 +1250,12 @@
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-            closePopup('orderDetailPopup'); closePopup('deleteOrderPopup'); closePopup('logoutPopup'); closePopup('registerConfirmPopup'); closePopup('priceFormPopup'); closePopup('deletePricePopup');
+            closePopup('orderDetailPopup'); closePopup('deleteOrderPopup'); closePopup('logoutPopup'); closePopup('priceFormPopup'); closePopup('deletePricePopup');
         }
     });
-    ['orderDetailPopup', 'deleteOrderPopup', 'logoutPopup', 'registerConfirmPopup', 'priceFormPopup', 'deletePricePopup'].forEach(id => {
+    ['orderDetailPopup', 'deleteOrderPopup', 'logoutPopup', 'priceFormPopup', 'deletePricePopup'].forEach(id => {
         document.getElementById(id).addEventListener('click', function(e) { if (e.target.id === id) closePopup(id); });
     });
 </script>
 </body>
-</html>
+
